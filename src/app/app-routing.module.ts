@@ -4,12 +4,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { CustomerDashBoardComponent} from './customer-dash-board/customer-dash-board.component';
+import { LogComplaintsComponent} from './log-complaints/log-complaints.component';
+import { ViewComplaintsComponent} from './view-complaints/view-complaints.component';
+import { StaffDashBoardComponent} from './staff-dash-board/staff-dash-board.component';
 
 
 const routes:Routes=[
   {path:'registration', component:RegistrationComponent},
   {path:'',component:LoginComponent,pathMatch: 'full'},
   {path:'customerDash',component:CustomerDashBoardComponent},
+  {path:'customerDash/logComplaints',component:LogComplaintsComponent},
+  {path:'customerDash/viewComplaints',component:ViewComplaintsComponent},
+  {path:'staffDash',component:StaffDashBoardComponent},
 ];
 @NgModule({
   declarations: [],

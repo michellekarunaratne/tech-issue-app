@@ -3,6 +3,7 @@ import { LoginService} from '../login.service';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import {WebsocketService} from '../websocket.service';
 
 
 @Component({
@@ -22,9 +23,14 @@ export class LoginComponent implements OnInit {
     //console.log(this.loginForm.value);
     this.loginService.login(this.loginForm.value)
     .subscribe(user =>{
-      if(user)
+      if(user.userId.includes("v"))
       {
         this.router.navigate(['/customerDash'])
+      }
+      else if(user.userId.includes("emp"))
+      {
+        this.webSocketService.logActiveStaffUser(user.userId)
+        this.router.navigate(['/staffDash'])
       }
       else
       {
@@ -33,14 +39,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     public loginService:LoginService,
+    public webSocketService:WebsocketService
     ) { }
 
 
   ngOnInit() {
+
+    
   }
 
   

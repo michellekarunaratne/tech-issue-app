@@ -10,7 +10,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClient } from 'selenium-webdriver/http';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService} from './login.service';
+import {WebsocketService} from './websocket.service'
 import { CustomerDashBoardComponent } from './customer-dash-board/customer-dash-board.component';
+import { LogComplaintsComponent } from './log-complaints/log-complaints.component';
+import { AgmCoreModule } from '@agm/core';
+import { ViewComplaintsComponent } from './view-complaints/view-complaints.component';
+import { StaffDashBoardComponent } from './staff-dash-board/staff-dash-board.component'
+
 
 
 @NgModule({
@@ -18,7 +24,10 @@ import { CustomerDashBoardComponent } from './customer-dash-board/customer-dash-
     AppComponent,
     LoginComponent,
     RegistrationComponent,
-    CustomerDashBoardComponent
+    CustomerDashBoardComponent,
+    LogComplaintsComponent,
+    ViewComplaintsComponent,
+    StaffDashBoardComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +35,10 @@ import { CustomerDashBoardComponent } from './customer-dash-board/customer-dash-
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyArJu7m6povP8xlqd5vVfX7Qz9UaSzm4OQ'
+    })
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

@@ -5,9 +5,9 @@ var customerSchema= new Schema (
     {
         firstName:String,
         lastName:String,
-        Nic:String,
-        Email:String,
-        ContactNumber:Number
+        nic:String,
+        email:String,
+        contactNumber:Number
     }
 )
 

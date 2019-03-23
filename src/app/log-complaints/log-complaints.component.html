@@ -1,0 +1,77 @@
+<!-- Material form register -->
+<br><br><br>
+<div class="col-sm-4 offset-sm-4 text-center">
+  <mdb-card>
+
+    <mdb-card-header class="blue white-text text-center py-4">
+      <h5>
+        <strong>Log Complaints</strong>
+      </h5>
+    </mdb-card-header>
+
+    <!--Card content-->
+    <mdb-card-body class="px-lg-5 pt-0">
+
+      <!-- Form -->
+      <form class="text-center" style="color: #757575;">
+
+        <div class="form-row">
+          <div class="col">
+            <!-- First name -->
+            <div class="md-form">
+              <input type="text" class="form-control" mdbInput>
+              <label for="materialRegisterFormEquipmentName">Equipment Name </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- E-mail -->
+        <div class="md-form mt-0">
+          <textarea type="text" id="form75" class="form-control md-textarea" rows="3" mdbInput></textarea>
+          <label for="materialRegisterFormEquipmentFault">Equipment Fault</label>
+        </div>
+
+        <!--Image input-->
+        <div class="form-row md-form">
+              <label for="materialRegisterFormLastName">Equipment Image</label>
+        </div>
+        <div class="form-row">
+          <div class="col">
+              <div class="md-form">
+                  <input type="file" mdbFileSelect aria-describedby="materialRegisterFormPhoneHelpBlock"style="color:primary;">
+              </div>
+          </div>
+          <div class="col">
+              <div class="md-form">
+                  <button class="btn btn-md btn-primary">Start uploading</button>
+              </div>
+            </div>
+        </div>
+
+        <!-- Phone number -->
+        <div class="md-form">
+          <input type="text" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"
+            mdbInput>
+          <label for="materialRegisterFormPhone">Phone number</label>
+        </div>
+
+        <!-- Address -->
+        <div class="md-form">
+            <textarea type="text" id="form75" class="form-control md-textarea" rows="3" mdbInput></textarea>
+          <label for="materialRegisterFormAddress">Address</label>
+          </div>
+
+        <!-- Log Complaint button -->
+        <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
+          type="submit">Add Complaint</button>
+
+        <!--Notify staff-->
+        <button (click)="notifyStaff()" type="button" mdbBtn color="primary" mdbWavesEffect>Notify Staff</button>
+      </form>
+      <!-- Form -->
+
+    </mdb-card-body>
+
+  </mdb-card>
+  <!-- Material form register -->
+</div>

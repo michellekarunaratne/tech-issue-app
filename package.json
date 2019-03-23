@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.0.0-beta.5",
     "@angular/animations": "~7.2.0",
     "@angular/common": "~7.2.0",
     "@angular/compiler": "~7.2.0",
@@ -21,6 +22,8 @@
     "@angular/router": "~7.2.0",
     "@fortawesome/fontawesome-free": "^5.6.3",
     "@types/chart.js": "^2.7.45",
+    "@types/googlemaps": "^3.30.19",
+    "@types/socket.io-client": "^1.4.32",
     "angular-bootstrap-md": "^7.4.1",
     "body-parser": "^1.18.3",
     "chart.js": "^2.5.0",
@@ -31,6 +34,9 @@
     "mongoose": "^5.4.16",
     "npm-registry-client": "^8.6.0",
     "rxjs": "~6.3.3",
+    "rxjs-compat": "^6.4.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },
