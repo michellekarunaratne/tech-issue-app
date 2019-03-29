@@ -34,7 +34,7 @@ io.on('connection', function(socket){
     User.activeStaffLogin(userId,socketId)
     console.log('a staff member connected'+' '+socketId);
   })
-  socket.on('disconnect', function (socketId) {
+  socket.on('appdisconnect', function (socketId) {
     console.log('a staff member disconnected');
   });
 
@@ -63,7 +63,14 @@ io.on('connection',function(socket){
 app.post('/userLogin',jsonencodedParser,(req,res)=>{
   User.userLogin(req.body.userId,req.body.password)
   .then(function(doc){
-    res.send(doc);
+    if(!doc)
+    {
+      res.send({userId:"Not Found"})
+    }
+    else
+    {
+      res.send(doc);
+    }
   })
   .catch(function(error){
     res.send(error);
@@ -83,3 +90,16 @@ app.post('/userRegistration/customer',jsonencodedParser,(req,res)=>{
 app.post('/logComplaint',jsonencodedParser,(req,res)=>{
   
 })
+
+app.post('/activeStaffLogout',jsonencodedParser,(req,res)=>{
+
+  User.removeActiveStaff(req.body.userId)
+  .then(function(doc){
+    res.send(doc)
+  })
+  .catch(function(error){
+    res.send(error)
+  })
+})
+
+  

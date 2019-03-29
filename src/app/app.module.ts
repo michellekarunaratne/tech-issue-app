@@ -15,7 +15,10 @@ import { CustomerDashBoardComponent } from './customer-dash-board/customer-dash-
 import { LogComplaintsComponent } from './log-complaints/log-complaints.component';
 import { AgmCoreModule } from '@agm/core';
 import { ViewComplaintsComponent } from './view-complaints/view-complaints.component';
-import { StaffDashBoardComponent } from './staff-dash-board/staff-dash-board.component'
+import { StaffDashBoardComponent } from './staff-dash-board/staff-dash-board.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { EditCustomerDetailsComponent } from './edit-customer-details/edit-customer-details.component'
 
 
 
@@ -27,7 +30,10 @@ import { StaffDashBoardComponent } from './staff-dash-board/staff-dash-board.com
     CustomerDashBoardComponent,
     LogComplaintsComponent,
     ViewComplaintsComponent,
-    StaffDashBoardComponent
+    StaffDashBoardComponent,
+    HeaderComponent,
+    FooterComponent,
+    EditCustomerDetailsComponent
   ],
   imports: [
     BrowserModule,

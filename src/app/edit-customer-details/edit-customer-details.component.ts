@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { StoreStatusService} from '../store-status.service';
 
 @Component({
-  selector: 'app-customer-dash-board',
-  templateUrl: './customer-dash-board.component.html',
-  styleUrls: ['./customer-dash-board.component.scss']
+  selector: 'app-edit-customer-details',
+  templateUrl: './edit-customer-details.component.html',
+  styleUrls: ['./edit-customer-details.component.scss']
 })
-export class CustomerDashBoardComponent implements OnInit {
+export class EditCustomerDetailsComponent implements OnInit {
+  
 
   constructor(
     public storeStatusService:StoreStatusService
@@ -14,7 +15,6 @@ export class CustomerDashBoardComponent implements OnInit {
 
   ngOnInit() {
     this.storeStatusService.setLoginStatus()
-
   }
 
 }

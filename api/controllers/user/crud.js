@@ -62,16 +62,17 @@ function activeStaffLogin(userId,socketId){
     })
 }
 
-function removeActiveStaff(socketId)
+function removeActiveStaff(userId)
 {
     var promise=new Promise(function(resolve,reject){
-        ActiveStaff.remove({socketId:socketId},function(error,doc){
+        ActiveStaff.deleteOne({userId:userId},function(error,doc){
             if(error)
             {
                 reject(error)
             }
             else
             {
+
                 resolve(doc)
             }
         })

@@ -1,6 +1,7 @@
 import { Component, OnInit,EventEmitter } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import {WebsocketService} from '../websocket.service';
+import { StoreStatusService} from '../store-status.service';
 
 
 @Component({
@@ -17,10 +18,13 @@ export class LogComplaintsComponent implements OnInit {
   }
 
   constructor(
-    public webSocketService:WebsocketService
+    public webSocketService:WebsocketService,
+    private storeStatusService:StoreStatusService
 
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.storeStatusService.setLoginStatus()
+  }
 
 }

@@ -4,6 +4,8 @@ import { FormBuilder } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import {WebsocketService} from '../websocket.service';
+import { StoreStatusService} from '../store-status.service';
+
 
 
 @Component({
@@ -25,10 +27,12 @@ export class LoginComponent implements OnInit {
     .subscribe(user =>{
       if(user.userId.includes("v"))
       {
+        this.storeStatusService.setLoginStatus()
         this.router.navigate(['/customerDash'])
       }
       else if(user.userId.includes("emp"))
       {
+        this.storeStatusService.setLoginStatus()
         this.webSocketService.logActiveStaffUser(user.userId)
         this.router.navigate(['/staffDash'])
       }
@@ -44,12 +48,12 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     public loginService:LoginService,
-    public webSocketService:WebsocketService
+    public webSocketService:WebsocketService,
+    public storeStatusService:StoreStatusService
     ) { }
 
 
   ngOnInit() {
-
     
   }
 
