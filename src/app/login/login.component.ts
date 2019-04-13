@@ -11,7 +11,7 @@ import { StoreStatusService} from '../store-status.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   loginForm=this.fb.group({
@@ -25,12 +25,17 @@ export class LoginComponent implements OnInit {
     //console.log(this.loginForm.value);
     this.loginService.login(this.loginForm.value)
     .subscribe(user =>{
-      if(user.userId.includes("v"))
+      localStorage.setItem('firstName',user.firstName)
+      localStorage.setItem('lastName',user.lastName)
+      localStorage.setItem('email',user.email)
+      localStorage.setItem('phone',user.phone.toString())
+      if(user.empId==null && user.nic.includes("v"))
       {
         this.storeStatusService.setLoginStatus()
+        localStorage.setItem('userId',user.nic)
         this.router.navigate(['/customerDash'])
       }
-      else if(user.userId.includes("emp"))
+      else if(user.empId.includes("emp"))
       {
         this.storeStatusService.setLoginStatus()
         this.webSocketService.logActiveStaffUser(user.userId)

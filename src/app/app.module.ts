@@ -18,9 +18,7 @@ import { ViewComplaintsComponent } from './view-complaints/view-complaints.compo
 import { StaffDashBoardComponent } from './staff-dash-board/staff-dash-board.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { EditCustomerDetailsComponent } from './edit-customer-details/edit-customer-details.component'
-
-
+import { EditCustomerDetailsComponent } from './edit-customer-details/edit-customer-details.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +31,7 @@ import { EditCustomerDetailsComponent } from './edit-customer-details/edit-custo
     StaffDashBoardComponent,
     HeaderComponent,
     FooterComponent,
-    EditCustomerDetailsComponent
+    EditCustomerDetailsComponent    
   ],
   imports: [
     BrowserModule,

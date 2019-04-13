@@ -13,51 +13,42 @@
     <mdb-card-body class="px-lg-5 pt-0">
 
       <!-- Form -->
-      <form class="text-center" style="color: #757575;">
+      <form [formGroup]="logComplaintForm"class="text-center" style="color: #757575;" (ngSubmit)="onSubmit()">
 
         <div class="form-row">
           <div class="col">
-            <!-- First name -->
+            <!-- Equipment name -->
             <div class="md-form">
-              <input type="text" class="form-control" mdbInput>
+              <input id="materialRegisterFormEquipmentName" formControlName="equipmentName" type="text" class="form-control" mdbInput>
               <label for="materialRegisterFormEquipmentName">Equipment Name </label>
             </div>
           </div>
         </div>
 
-        <!-- E-mail -->
+        <!-- Equipment fault -->
         <div class="md-form mt-0">
-          <textarea type="text" id="form75" class="form-control md-textarea" rows="3" mdbInput></textarea>
+          <textarea type="text" id="materialRegisterFormEquipmentFault" formControlName="equipmentFault" class="form-control md-textarea" rows="1" mdbInput></textarea>
           <label for="materialRegisterFormEquipmentFault">Equipment Fault</label>
         </div>
 
         <!--Image input-->
-        <div class="form-row md-form">
-              <label for="materialRegisterFormLastName">Equipment Image</label>
-        </div>
-        <div class="form-row">
-          <div class="col">
-              <div class="md-form">
-                  <input type="file" mdbFileSelect aria-describedby="materialRegisterFormPhoneHelpBlock"style="color:primary;">
-              </div>
-          </div>
-          <div class="col">
-              <div class="md-form">
-                  <button class="btn btn-md btn-primary">Start uploading</button>
-              </div>
-            </div>
+        <div class="md-form mt-0">
+            <label >Equipment Image</label><br><br>
+            <span style="color:red;" *ngIf="message">{{message}}</span>
+            <input #file type="file" accept='image/*' style="float:left; color:primary" (change)="preview(file.files)" /><br><br>
+            <img src="assets/images/upload-icon.png" style="float:center" height="50" *ngIf="!imgURL">
+            <img [src]="imgURL"style="float:center" height="200" *ngIf="imgURL">
         </div>
 
         <!-- Phone number -->
         <div class="md-form">
-          <input type="text" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"
-            mdbInput>
+          <input type="text" id="materialRegisterFormPhone" formControlName="phone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"mdbInput>
           <label for="materialRegisterFormPhone">Phone number</label>
         </div>
 
         <!-- Address -->
         <div class="md-form">
-            <textarea type="text" id="form75" class="form-control md-textarea" rows="3" mdbInput></textarea>
+          <textarea id="materialRegisterFormAddress" formControlName="address" type="text" id="form75" class="form-control md-textarea" rows="3" mdbInput></textarea>
           <label for="materialRegisterFormAddress">Address</label>
           </div>
 

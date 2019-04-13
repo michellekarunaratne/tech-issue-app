@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import User from './user';
 import { catchError, retry } from 'rxjs/operators';
-import Customer from './customer';
 
 
 @Injectable({
@@ -25,6 +24,7 @@ export class LoginService {
   {
     this.userId=userId;
   }
+  
   login(user:User):Observable<User>
   {
       this.setUserId(user.userId)

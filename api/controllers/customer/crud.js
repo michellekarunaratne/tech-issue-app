@@ -31,4 +31,42 @@ function customerRegistration(firstName,lastName,nic,email,phone,password)
     return promise;
 }
 
+function getCustomerDetails(nic)
+{
+    var promise=new Promise(function(resolve,reject){
+        Customer.find({nic:nic},function(error,doc){
+            if(error)
+            {
+                reject(error)
+            }
+            else
+            {
+                resolve(doc[0])
+            }
+        })
+    })
+    return promise
+}
+
+function editCustomerDetails(firstName,lastName,nic,email,phone)
+{
+    var phone=parseInt(phone)
+    var promise=new Promise(function(resolve,reject){
+        Customer.findOneAndUpdate({nic:nic},{firstName:firstName,lastName:lastName,email:email,phone:phone},{new:true},function(error,doc){
+            if(error)
+            {
+                reject(error)
+            }
+            else
+            {
+                resolve(doc)
+            }
+        })
+    })
+
+    return promise
+}
+
+module.exports.editCustomerDetails=editCustomerDetails;
+module.exports.getCustomerDetails=getCustomerDetails;
 module.exports.customerRegistration=customerRegistration;

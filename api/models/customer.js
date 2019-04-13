@@ -7,7 +7,7 @@ var customerSchema= new Schema (
         lastName:String,
         nic:String,
         email:String,
-        contactNumber:Number
+        phone:Number
     }
 )
 

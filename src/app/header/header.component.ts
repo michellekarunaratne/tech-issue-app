@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  logoutCusomter()
+  logout()
   {
     this.storeStatusService.setLogoutStatus()
     this.router.navigate(['/login'])

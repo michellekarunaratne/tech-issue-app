@@ -1,3 +1,33 @@
-<p>
-  view-complaints works!
-</p>
+<br><br><br>
+
+<div class="col-sm-4 offset-sm-4 text-center">
+    <mdb-card class="text-white" bgColor="bg-primary">
+      <mdb-card-body>
+        <h4>Customer Complaints Log</h4>
+      </mdb-card-body>
+    </mdb-card>
+</div>
+
+<br><br><br>
+
+<div class="col-sm-10 offset-sm-1 text-center">
+    <mdb-card>
+      <mdb-card-body>
+          <table mdbTable hover="true">
+            <thead class="primary-color white-text">
+              <tr>
+                <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr mdbTableCol *ngFor="let el of elements">
+                <th scope="row">{{el.id}}</th>
+                <td>{{el.first}}</td>
+                <td>{{el.last}}</td>
+                <td>{{el.handle}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </mdb-card-body>
+    </mdb-card>
+</div>

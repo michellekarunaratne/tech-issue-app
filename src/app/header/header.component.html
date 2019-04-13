@@ -12,7 +12,7 @@
               <button (click)="directHome()"class="nav-link waves-light text-white" mdbBtn type="button" outline="true" color="blue-light" mdbWavesEffect><mdb-icon fas icon="home"></mdb-icon> Home  </button>
             </li>
           <li *ngIf="storeStatusService.getLoginStatus()" class="nav-item">
-            <button (click)="logoutCusomter()"class="nav-link waves-light text-white" mdbBtn type="button" outline="true" color="blue-light" mdbWavesEffect><mdb-icon fas icon="sign-out-alt"></mdb-icon> Logout</button>
+            <button (click)="logout()"class="nav-link waves-light text-white" mdbBtn type="button" outline="true" color="blue-light" mdbWavesEffect><mdb-icon fas icon="sign-out-alt"></mdb-icon> Logout</button>
           </li>
       </ul>
       <!-- Links -->

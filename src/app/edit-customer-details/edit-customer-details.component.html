@@ -1,10 +1,10 @@
-<br><br><br>
+<br><br><br><br>
 <div class="col-sm-4 offset-sm-4 text-center">
   <mdb-card>
 
     <mdb-card-header class="blue white-text text-center py-4">
       <h5>
-        <strong>Sign up</strong>
+        <strong>Edit Customer Details</strong>
       </h5>
     </mdb-card-header>
 
@@ -12,20 +12,20 @@
     <mdb-card-body class="px-lg-5 pt-0">
 
       <!-- Form -->
-      <form class="text-center" style="color: #757575;">
+      <form [formGroup]="editCustomerDetailsForm" (ngSubmit)="onSubmit()" class="text-center" style="color: #757575;">
 
         <div class="form-row">
           <div class="col">
             <!-- First name -->
             <div class="md-form">
-              <input type="text" class="form-control" mdbInput>
+              <input type="text" formControlName="firstName" class="form-control" mdbInput>
               <label for="materialRegisterFormFirstName"><mdb-icon fas icon="male"></mdb-icon> First name</label>
             </div>
           </div>
           <div class="col">
             <!-- Last name -->
             <div class="md-form">
-              <input type="text" class="form-control" mdbInput>
+              <input type="text" formControlName="lastName" class="form-control" mdbInput> 
               <label for="materialRegisterFormLastName"><mdb-icon fas icon="male"></mdb-icon> Last name</label>
             </div>
           </div>
@@ -33,22 +33,14 @@
 
         <!-- E-mail -->
         <div class="md-form mt-0">
-          <input type="email" class="form-control" mdbInput>
+          <input type="email" formControlName="email" class="form-control" mdbInput >
           <label for="materialRegisterFormEmail"><mdb-icon fas icon="at"></mdb-icon> E-mail</label>
         </div>
 
         <!-- Phone number -->
         <div class="md-form">
-          <input type="text" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"
-            mdbInput>
+          <input type="number" formControlName="phone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"mdbInput>
           <label for="materialRegisterFormPhone"><mdb-icon fas icon="mobile"></mdb-icon> Phone number</label>
-        </div>
-
-        <!-- Password -->
-        <div class="md-form">
-          <input type="password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"
-            mdbInput>
-          <label for="materialRegisterFormPassword"><mdb-icon fas icon="unlock"></mdb-icon> Password</label>
         </div>
 
         <!-- Sign up button -->
@@ -56,10 +48,19 @@
           type="submit">Edit Customer Details</button>
 
       </form>
+
+      <div #alert *ngIf="getSuccess()"class="alert alert-success alert-dismissible fade show" role="alert">
+          <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="alert-heading">Successfull!</h4>
+          <p>You have succesfully edited your personally data.</p>
+        </div>
       <!-- Form -->
 
     </mdb-card-body>
 
   </mdb-card>
-  <!-- Material form register -->
+  
+  
 </div>

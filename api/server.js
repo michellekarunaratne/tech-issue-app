@@ -50,7 +50,10 @@ io.on('connection',function(socket){
   socket.on('notifyStaff',function(){
     ActiveStaff.getActiveStaffMember()
     .then(function(doc){
-      io.sockets.connected[doc.socketId].emit('staffMemberNotification',{msg:"you have a complaint to attend to"})
+      if(doc.socketId!=null)
+      {
+        io.sockets.connected[doc.socketId].emit('staffMemberNotification',{msg:"you have a complaint to attend to"})
+      }
     })
     .catch(function(error){
       console.log(error)
@@ -102,4 +105,13 @@ app.post('/activeStaffLogout',jsonencodedParser,(req,res)=>{
   })
 })
 
+app.post('/customer/editCustomerDetails',jsonencodedParser,(req,res)=>{
+  Customer.editCustomerDetails(req.body.firstName,req.body.lastName,req.body.nic,req.body.email,req.body.phone)
+  .then(function(doc){
+    res.send(doc)
+  })
+  .catch(function(error){
+    res.send(error)
+  })
+})
   

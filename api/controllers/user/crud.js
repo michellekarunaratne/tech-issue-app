@@ -1,5 +1,9 @@
 const User=require('../../models/user');
 const ActiveStaff=require('../../models/activeStaff')
+const CustomerCrud=require('../customer/crud')
+const StaffCrud=require('../staff/crud')
+
+
 function userLogin(userId,password)
 {
     var promise=new Promise(function(resolve,reject){
@@ -10,7 +14,14 @@ function userLogin(userId,password)
             }
             else
             {
-                resolve(doc[0]);
+                if(!doc[0].userId.includes("emp"))
+                {
+                    resolve(CustomerCrud.getCustomerDetails(userId))
+                }
+                else
+                {
+                    resolve(StaffCrud.getStaffdetails(userId))
+                }
             }
         })
     })

@@ -1,4 +1,10 @@
 export default class User{
-    userId:String;
-    password:String;
+    userId:string;
+    password:string;
+    firstName:string;
+    lastName:string;
+    nic:string;
+    email:string;
+    phone:number;
+    empId:String
 }
