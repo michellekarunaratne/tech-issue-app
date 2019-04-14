@@ -8,4 +8,4 @@ var equipmentSchema= new Schema (
     }
 )
 
-module.exports= mongoose.model('equipment',equipmentSchema);
+module.exports= mongoose.model('Equipment',equipmentSchema);

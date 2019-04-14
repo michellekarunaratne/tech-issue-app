@@ -2,7 +2,8 @@ import { Component, OnInit,EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import {WebsocketService} from '../websocket.service';
 import { StoreStatusService} from '../store-status.service';
-import { read } from 'fs';
+import {CustomerServiceService} from '../customer-service.service'
+
 
 @Component({
   selector: 'app-log-complaints',
@@ -20,7 +21,8 @@ export class LogComplaintsComponent implements OnInit {
     equipmentFault:[''],
     phone:[''],
     address:[''],
-    image:null
+    image:null,
+    customerId:null
 
   })
  
@@ -32,7 +34,9 @@ export class LogComplaintsComponent implements OnInit {
   constructor(
     public webSocketService:WebsocketService,
     private storeStatusService:StoreStatusService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private customerService:CustomerServiceService
+
 
   ) {}
 
@@ -56,14 +60,28 @@ export class LogComplaintsComponent implements OnInit {
       this.logComplaintForm.get('image').setValue({
         filename: file.name,
         filetype: file.type,
-        value: reader.result.toString().split(',')[1]
+        filevalue: reader.result.toString().split(',')[1]
       })
     }
     
   }
 
   onSubmit(){
-    
+    this.logComplaintForm.get('customerId').setValue(localStorage.getItem('userId'))
+    this.customerService.logCustomerComplain(this.logComplaintForm.value)
+    .subscribe(complaint=>{
+      if(complaint)
+      {
+        alert("Complaint sucessfully logged")
+        this.webSocketService.notifyStaff();
+      }
+      else
+      {
+        alert("please try again")
+      }
+    }
+    )
+
   }
 
 

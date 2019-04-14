@@ -38,7 +38,8 @@ export class LoginComponent implements OnInit {
       else if(user.empId.includes("emp"))
       {
         this.storeStatusService.setLoginStatus()
-        this.webSocketService.logActiveStaffUser(user.userId)
+        localStorage.setItem('empId',user.empId)
+        this.webSocketService.logActiveStaffUser(user.empId)
         this.router.navigate(['/staffDash'])
       }
       else

@@ -6,5 +6,5 @@ export default class User{
     nic:string;
     email:string;
     phone:number;
-    empId:String
+    empId:string
 }

@@ -52,25 +52,47 @@ function userRegistration(userId,userPassword)
 }
 
 function activeStaffLogin(userId,socketId){
+    
     var promise = new Promise(function(resolve,reject){
-        var activeStaff=new ActiveStaff({
-            userId:userId,
-            socketId:socketId
-        })
 
-        activeStaff.save(function(error,doc){
-            if(error)
+        ActiveStaff.findOne({userId:userId},function(error,doc){
+            if(doc)
             {
-                reject(error)
+                ActiveStaff.update({userId:userId},{socketId:socketId},function(error,doc){
+                    if(error)
+                    {
+                        reject(error)
+                    }
+                    else
+                    {
+                        resolve(doc)
+                    }
+                })
+            }
+            else if(!doc)
+            {
+                var activeStaff=new ActiveStaff({
+                    userId:userId,
+                    socketId:socketId
+                })
+                activeStaff.save(function(error,doc){
+                    if(error)
+                    {
+                        reject(error)
+                    }
+                    else
+                    {
+                        resolve(doc)
+                    }
+                })     
             }
             else
             {
-                resolve(doc)
+                reject(error)
             }
         })
-
-        return promise
     })
+    return promise
 }
 
 function removeActiveStaff(userId)

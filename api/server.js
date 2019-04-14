@@ -29,12 +29,12 @@ const server = app.listen(port, function(){
 var io = require('socket.io').listen(server);
 
 io.on('connection', function(socket){
-  var socketId=socket.id
-  socket.on('login',function(userId){
+    var socketId=socket.id
+    socket.on('login',function(userId){
     User.activeStaffLogin(userId,socketId)
     console.log('a staff member connected'+' '+socketId);
   })
-  socket.on('appdisconnect', function (socketId) {
+  socket.on('disconnect', function () {
     console.log('a staff member disconnected');
   });
 
@@ -50,8 +50,9 @@ io.on('connection',function(socket){
   socket.on('notifyStaff',function(){
     ActiveStaff.getActiveStaffMember()
     .then(function(doc){
-      if(doc.socketId!=null)
+      if(doc.socketId)
       {
+        console.log(doc.socketId)
         io.sockets.connected[doc.socketId].emit('staffMemberNotification',{msg:"you have a complaint to attend to"})
       }
     })
@@ -107,6 +108,16 @@ app.post('/activeStaffLogout',jsonencodedParser,(req,res)=>{
 
 app.post('/customer/editCustomerDetails',jsonencodedParser,(req,res)=>{
   Customer.editCustomerDetails(req.body.firstName,req.body.lastName,req.body.nic,req.body.email,req.body.phone)
+  .then(function(doc){
+    res.send(doc)
+  })
+  .catch(function(error){
+    res.send(error)
+  })
+})
+
+app.post('/customer/logComplaints',jsonencodedParser,(req,res)=>{
+  Customer.logCustomerComplaints(req.body.equipmentName,req.body.equipmentFault,req.body.image.filename,req.body.image.filetype,req.body.image.filevalue,req.body.phone,req.body.address,req.body.customerId)
   .then(function(doc){
     res.send(doc)
   })

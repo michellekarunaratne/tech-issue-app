@@ -6,7 +6,7 @@ var Complaint=require('mongoose').model('Complaint').schema
 var Staff=require('mongoose').model('Staff').schema
 
 
-var complaintSchema= new Schema (
+var reportSchema= new Schema (
     {
       ReportId:String,
       StartTime:Date,
@@ -18,4 +18,4 @@ var complaintSchema= new Schema (
     }
 )
 
-module.exports= mongoose.model('Complaint',complaintSchema);
+module.exports= mongoose.model('Report',reportSchema);

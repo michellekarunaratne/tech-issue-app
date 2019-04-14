@@ -1,5 +1,7 @@
 const Customer=require('../../models/customer');
 const User=require('../user/crud')
+const Complaint=require('../../models/complaint')
+const Staff=require('../../models/staff')
 
 function customerRegistration(firstName,lastName,nic,email,phone,password)
 {
@@ -16,7 +18,7 @@ function customerRegistration(firstName,lastName,nic,email,phone,password)
             {
                 reject(error);
             }
-            else
+            else if(doc)
             {
                User.userRegistration(nic,password)
                .then(function(doc){
@@ -67,6 +69,63 @@ function editCustomerDetails(firstName,lastName,nic,email,phone)
     return promise
 }
 
+function logCustomerComplaints(equipmentName,equipmentFault,imageName,imageType,imageValue,phone,address,userId)
+{
+    const $Vals={};
+
+    function getCustomer()
+    {
+        return new Promise(function(resolve,reject){
+            Customer.find({nic:userId},function(error,doc){
+                if(error)
+                {
+                    reject(error)
+                }
+                else
+                {
+                    resolve(doc[0])
+                }
+            })
+        })
+    }
+   
+    function createComaplaint()
+    {
+        return new Promise(function(resolve,reject){
+            var complaint=new Complaint({
+                equipmentName:equipmentName,
+                equipmentFault:equipmentFault,
+                image:{
+                    filename:imageName,
+                    filetype:imageType,
+                    filevalue:imageValue
+                },
+                phone:parseInt(phone),
+                address:address,
+                customer:$Vals.customer
+            })
+
+            complaint.save(function(error,doc){
+                if(error)
+                {
+                    reject(error)
+                }
+                else
+                {
+                    resolve(doc)
+                }
+            })
+        })
+    }
+
+    return getCustomer()
+    .then(function(doc){
+        $Vals.customer=doc
+        return createComaplaint()
+    })
+}
+
 module.exports.editCustomerDetails=editCustomerDetails;
 module.exports.getCustomerDetails=getCustomerDetails;
 module.exports.customerRegistration=customerRegistration;
+module.exports.logCustomerComplaints=logCustomerComplaints;
