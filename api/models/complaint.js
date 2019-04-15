@@ -21,8 +21,10 @@ var complaintSchema= new Schema (
        },
        phone:Number,
        address:String,
+       allocatedStaff:{type:Boolean,default:false},
        customer:[Customer],
-       Staff:[Staff],
+       staff:[Staff],
+       date:String
        //equipment:[Equipment],
        
     }

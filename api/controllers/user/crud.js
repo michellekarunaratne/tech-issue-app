@@ -58,7 +58,7 @@ function activeStaffLogin(userId,socketId){
         ActiveStaff.findOne({userId:userId},function(error,doc){
             if(doc)
             {
-                ActiveStaff.update({userId:userId},{socketId:socketId},function(error,doc){
+                ActiveStaff.update({userId:userId},{socketId:socketId},{new:true},function(error,doc){
                     if(error)
                     {
                         reject(error)
@@ -113,6 +113,8 @@ function removeActiveStaff(userId)
     return promise
     
 }
+
+
 
 module.exports.userLogin=userLogin;
 module.exports.userRegistration=userRegistration;

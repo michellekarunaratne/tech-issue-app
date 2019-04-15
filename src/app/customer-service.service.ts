@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http';
 import Customer from './customer';
 import { Observable } from 'rxjs';
 import Complaint from './complaint';
-
+import { catchError, map, tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -15,6 +15,7 @@ export class CustomerServiceService {
 
   constructor(private http:HttpClient) { }
 
+
   editCustomerDetails(customer:Customer):Observable<Customer>
   {
     return this.http.post<Customer>(`${this.url}/editCustomerDetails`,customer)
@@ -24,4 +25,13 @@ export class CustomerServiceService {
   {
     return this.http.post<Complaint>(`${this.url}/logComplaints`,complaint) 
   }
+
+  viewCustomerComplaints(userId)
+  {
+    const params= new HttpParams()
+    .set('userId',userId)
+    return this.http.get<Complaint[]>(`${this.url}/viewComplaints`,{params})
+  }
+
+
 }

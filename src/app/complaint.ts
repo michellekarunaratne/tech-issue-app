@@ -10,4 +10,6 @@ export default class Complaint{
         filevalue:string;
     }
     customerId:String;
+    allocatedStaff:Boolean;
+    date:Date;
 }

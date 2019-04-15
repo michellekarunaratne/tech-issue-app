@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {CustomerServiceService} from '../customer-service.service'
+import {WebsocketService} from '../websocket.service';
+import { StoreStatusService} from '../store-status.service';
+import { element } from '@angular/core/src/render3';
+import Complaint from '../complaint';
 
 @Component({
   selector: 'app-view-complaints',
@@ -7,18 +12,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewComplaintsComponent implements OnInit {
 
-  elements: any = [
-    {id: 1, first: 'Mark', last: 'Otto', handle: '@mdo'},
-    {id: 2, first: 'Jacob', last: 'Thornton', handle: '@fat'},
-    {id: 3, first: 'Larry', last: 'the Bird', handle: '@twitter'},
-  ];
+  elements: Complaint[];
 
-  headElements = ['ID', 'First', 'Last', 'Handle'];
+  headElements = ['Equipment Name', 'Equipment Fault','Date','Technician Allocated','Image'];
 
 
-  constructor() { }
+  constructor(
+    private customerService:CustomerServiceService,
+    private storeStatusService:StoreStatusService,
+  ) { }
 
   ngOnInit() {
+    this.storeStatusService.setLoginStatus()
+    this.customerService.viewCustomerComplaints(localStorage.getItem('userId'))
+    .subscribe(complaints=>{
+      this.elements=complaints
+    })
   }
 
 }

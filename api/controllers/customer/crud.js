@@ -91,6 +91,9 @@ function logCustomerComplaints(equipmentName,equipmentFault,imageName,imageType,
    
     function createComaplaint()
     {
+        var moment=require('moment')
+        var date=moment().format('LLL')
+
         return new Promise(function(resolve,reject){
             var complaint=new Complaint({
                 equipmentName:equipmentName,
@@ -102,7 +105,8 @@ function logCustomerComplaints(equipmentName,equipmentFault,imageName,imageType,
                 },
                 phone:parseInt(phone),
                 address:address,
-                customer:$Vals.customer
+                customer:$Vals.customer,
+                date:date
             })
 
             complaint.save(function(error,doc){
