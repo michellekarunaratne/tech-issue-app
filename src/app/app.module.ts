@@ -19,6 +19,7 @@ import { StaffDashBoardComponent } from './staff-dash-board/staff-dash-board.com
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { EditCustomerDetailsComponent } from './edit-customer-details/edit-customer-details.component';
+import { StaffViewAllocatedComplaintsComponent } from './staff-view-allocated-complaints/staff-view-allocated-complaints.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { EditCustomerDetailsComponent } from './edit-customer-details/edit-custo
     StaffDashBoardComponent,
     HeaderComponent,
     FooterComponent,
-    EditCustomerDetailsComponent    
+    EditCustomerDetailsComponent,
+    StaffViewAllocatedComplaintsComponent    
   ],
   imports: [
     BrowserModule,

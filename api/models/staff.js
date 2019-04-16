@@ -7,7 +7,9 @@ var staffSchema= new Schema (
         firstName:String,
         lastName:String,
         nic:String,
-        employeeId:String
+        empId:String,
+        email:String,
+        phone:Number,
     }
 )
 

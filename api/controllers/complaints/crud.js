@@ -18,4 +18,22 @@ function getComplaintsOfCustomer(customerId)
     return promise
 }
 
+function getComplaintsOfStaff(empId)
+{
+    var promise=new Promise(function(resolve,reject){
+       Complaint.find({"staff.empId":empId},function(error,doc){
+           if(error)
+           {
+               reject(error)
+           }
+           else
+           {
+               resolve(doc)
+           }
+       })
+    })
+    return promise
+}
+
+module.exports.getComplaintsOfStaff=getComplaintsOfStaff;
 module.exports.getComplaintsOfCustomer=getComplaintsOfCustomer;

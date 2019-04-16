@@ -12,7 +12,7 @@ function userLogin(userId,password)
             {
                 reject(error);
             }
-            else
+            else if(doc)
             {
                 if(!doc[0].userId.includes("emp"))
                 {

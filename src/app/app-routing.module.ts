@@ -8,6 +8,7 @@ import { LogComplaintsComponent} from './log-complaints/log-complaints.component
 import { ViewComplaintsComponent} from './view-complaints/view-complaints.component';
 import { StaffDashBoardComponent} from './staff-dash-board/staff-dash-board.component';
 import { EditCustomerDetailsComponent} from './edit-customer-details/edit-customer-details.component';
+import { StaffViewAllocatedComplaintsComponent} from './staff-view-allocated-complaints/staff-view-allocated-complaints.component';
 
 
 const routes:Routes=[
@@ -18,7 +19,8 @@ const routes:Routes=[
   {path:'customerDash/viewComplaints',component:ViewComplaintsComponent},
   {path:'staffDash',component:StaffDashBoardComponent},
   {path:'login',component:LoginComponent},
-  {path:'customerDash/editDetails',component:EditCustomerDetailsComponent}
+  {path:'customerDash/editDetails',component:EditCustomerDetailsComponent},
+  {path:'staffDash/viewAllocatedComplaints',component:StaffViewAllocatedComplaintsComponent}
 ];
 @NgModule({
   declarations: [],

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {WebsocketService} from '../websocket.service';
+import { StoreStatusService} from '../store-status.service';
 
 
 
@@ -12,17 +13,19 @@ export class StaffDashBoardComponent implements OnInit {
 
   constructor(
     public webSocketService:WebsocketService,
+    public storeStatusService:StoreStatusService
     
   ) { }
 
   ngOnInit() {
     
+    this.storeStatusService.setLoginStatus()
+
     this.webSocketService.getNotification()
     .subscribe((msg:String)=>{
       alert(msg)
     })
 
-    console.log(localStorage.getItem('empId'))
     this.webSocketService.logActiveStaffUser(localStorage.getItem('empId'))
    
   }

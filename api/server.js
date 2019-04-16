@@ -145,4 +145,15 @@ app.get('/customer/viewComplaints',jsonencodedParser,(req,res)=>{
     res.send(error)
   })
 })
+
+app.get('/staff/viewAllocatedComplaints',jsonencodedParser,(req,res)=>{
+  Complaint.getComplaintsOfStaff(req.query.empId)
+  .then(function(doc){
+    res.send(doc)
+  })
+  .catch(function(error){
+    res.send(error)
+  })
+})
+
   

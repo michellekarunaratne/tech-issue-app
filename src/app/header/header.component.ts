@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreStatusService} from '../store-status.service';
-import { Router } from '@angular/router';
+import { Router,  ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -9,23 +10,27 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  previousUrl
   constructor(
     public storeStatusService:StoreStatusService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {}
 
   ngOnInit() {
   }
 
   logout()
   {
+    localStorage.clear();
     this.storeStatusService.setLogoutStatus()
     this.router.navigate(['/login'])
   }
 
   directHome()
   {
-    this.router.navigate(['/customerDash'])
+    this.location.back()
   }
 
 }
