@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import Complaint from './complaint';
+import User from './user';
 
 
 @Injectable({
@@ -20,5 +21,10 @@ export class StaffServiceService {
     const params= new HttpParams()
     .set('empId',empId)
     return this.http.get<Complaint[]>(`${this.url}/viewAllocatedComplaints`,{params})
+  }
+
+  editStaffContactDetails(staff):Observable<User>
+  {
+    return this.http.post<User>(`${this.url}/editDetails`,staff)
   }
 }

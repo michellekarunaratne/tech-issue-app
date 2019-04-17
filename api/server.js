@@ -7,7 +7,8 @@ config = require('./DB'),
 User=require('./controllers/user/crud'),
 Customer= require('./controllers/customer/crud'),
 ActiveStaff=require('./controllers/complaints/notifyStaff'),
-Complaint=require('./controllers/complaints/crud')
+Complaint=require('./controllers/complaints/crud'),
+Staff=require('./controllers/staff/crud')
 
 
 mongoose.Promise = global.Promise;
@@ -154,6 +155,17 @@ app.get('/staff/viewAllocatedComplaints',jsonencodedParser,(req,res)=>{
   .catch(function(error){
     res.send(error)
   })
+})
+
+app.post('/staff/editDetails',jsonencodedParser,(req,res)=>{
+  Staff.editStaffDetails(req.body.empId,req.body.email,req.body.phone)
+  .then(function(doc){
+    res.send(doc)
+  })
+  .catch(function(error){
+    res.send(error)
+  })
+
 })
 
   

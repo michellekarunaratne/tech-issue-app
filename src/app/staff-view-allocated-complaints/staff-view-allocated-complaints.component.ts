@@ -45,6 +45,8 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
     .subscribe((msg:String)=>{
       alert(msg)
     })
+
+    this.webSocketService.logActiveStaffUser(localStorage.getItem('empId'))
    
   }
 

@@ -18,4 +18,23 @@ function getStaffdetails(empId)
     return promise
 }
 
+function editStaffDetails(empId,email,phone)
+{
+    var phone=parseInt(phone)
+    var promise=new Promise(function(resolve,reject){
+        Staff.findOneAndUpdate({empId:empId},{email:email,phone:phone},{new:true},function(error,doc){
+            if(error)
+            {
+                reject(error)
+            }
+            else
+            {
+                resolve(doc)
+            }
+        })
+    })
+    return promise
+}
+
+module.exports.editStaffDetails=editStaffDetails;
 module.exports.getStaffdetails=getStaffdetails;

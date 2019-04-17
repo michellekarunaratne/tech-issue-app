@@ -20,6 +20,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { EditCustomerDetailsComponent } from './edit-customer-details/edit-customer-details.component';
 import { StaffViewAllocatedComplaintsComponent } from './staff-view-allocated-complaints/staff-view-allocated-complaints.component';
+import { StaffEditDetailsComponent } from './staff-edit-details/staff-edit-details.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { StaffViewAllocatedComplaintsComponent } from './staff-view-allocated-co
     HeaderComponent,
     FooterComponent,
     EditCustomerDetailsComponent,
-    StaffViewAllocatedComplaintsComponent    
+    StaffViewAllocatedComplaintsComponent,
+    StaffEditDetailsComponent    
   ],
   imports: [
     BrowserModule,

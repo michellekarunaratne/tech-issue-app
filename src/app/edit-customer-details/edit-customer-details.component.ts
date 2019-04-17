@@ -50,10 +50,10 @@ export class EditCustomerDetailsComponent implements OnInit{
   ngOnInit() {
     this.storeStatusService.setLoginStatus()
     this.editCustomerDetailsForm.setValue({
-      firstName:localStorage.getItem('firstName'),
-      lastName:localStorage.getItem('lastName'),
-      email:localStorage.getItem('email'),
-      phone:localStorage.getItem('phone')
+      firstName:localStorage.getItem('customer.firstName'),
+      lastName:localStorage.getItem('customer.lastName'),
+      email:localStorage.getItem('customer.email'),
+      phone:localStorage.getItem('customer.phone')
     })
   }
 

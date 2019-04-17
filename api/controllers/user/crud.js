@@ -69,7 +69,7 @@ function activeStaffLogin(userId,socketId){
                     }
                 })
             }
-            else if(!doc)
+            else if(!doc && userId)
             {
                 var activeStaff=new ActiveStaff({
                     userId:userId,
