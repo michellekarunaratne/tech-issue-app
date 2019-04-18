@@ -21,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
 import { EditCustomerDetailsComponent } from './edit-customer-details/edit-customer-details.component';
 import { StaffViewAllocatedComplaintsComponent } from './staff-view-allocated-complaints/staff-view-allocated-complaints.component';
 import { StaffEditDetailsComponent } from './staff-edit-details/staff-edit-details.component';
+import { StaffCreateJobTicketComponent } from './staff-create-job-ticket/staff-create-job-ticket.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { StaffEditDetailsComponent } from './staff-edit-details/staff-edit-detai
     FooterComponent,
     EditCustomerDetailsComponent,
     StaffViewAllocatedComplaintsComponent,
-    StaffEditDetailsComponent    
+    StaffEditDetailsComponent,
+    StaffCreateJobTicketComponent    
   ],
   imports: [
     BrowserModule,

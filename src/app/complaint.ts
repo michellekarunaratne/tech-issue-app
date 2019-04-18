@@ -1,5 +1,7 @@
+import Report from './report';
 
 export default class Complaint{
+    _id:string;
     equipmentName:string;
     equipmentFault:string;
     phone:string;
@@ -12,4 +14,5 @@ export default class Complaint{
     customerId:String;
     allocatedStaff:Boolean;
     date:Date;
+    report:Report
 }

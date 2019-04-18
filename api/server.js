@@ -168,4 +168,14 @@ app.post('/staff/editDetails',jsonencodedParser,(req,res)=>{
 
 })
 
+app.post('/staff/addReport',jsonencodedParser,(req,res)=>{
+  Complaint.addReport(req.body.id,req.body.date,req.body.startTime,req.body.endTime,req.body.cost,req.body.jobTicket)
+  .then(function(doc){
+    res.send(doc)
+  })
+  .catch(function(error){
+    res.send(error)
+  })
+})
+
   

@@ -5,6 +5,8 @@ import { StoreStatusService} from '../store-status.service';
 import { element } from '@angular/core/src/render3';
 import Complaint from '../complaint';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-view-complaints',
@@ -17,8 +19,16 @@ export class ViewComplaintsComponent implements OnInit {
   elements: Complaint[];
   imagePath
 
+  date= new FormControl('');
+  startTime= new FormControl('');
+  endTime= new FormControl('');
+  cost = new FormControl('');
+  jobTicket = new FormControl('');
 
-  headElements = ['Complaint Number','Equipment Name', 'Equipment Fault','Date','Technician Allocated','Image'];
+  
+
+
+  headElements = ['Complaint Number','Equipment Name', 'Equipment Fault','Date','Technician Allocated','Image','View Report'];
 
 
   constructor(
@@ -44,5 +54,19 @@ export class ViewComplaintsComponent implements OnInit {
       this.elements=complaints
     })
   }
+
+  viewReport(event)
+  {
+    var target=event.target || event.srcElement || event.currentTarget
+    var selectedElementIndex=target.attributes.id.value;
+    var report=this.elements[selectedElementIndex].report
+    this.date.setValue(report.date)
+    this.startTime.setValue(report.startTime)
+    this.endTime.setValue(report.endTime)
+    this.cost.setValue(report.cost)
+    this.jobTicket.setValue(report.jobTicket)
+
+  }
+
 
 }

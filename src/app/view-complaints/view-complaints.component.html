@@ -27,6 +27,7 @@
                 <td>{{el.date}}</td>
                 <td>{{el.allocatedStaff}}</td>
                 <td><button id={{i}} mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0" (click)="[basicModal.show(),setImageSrc($event)]">View Image</button></td>
+                <td><button id={{i}} mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0" (click)="[frame.show(),viewReport($event)]" *ngIf="this.elements[i].report">View Report</button></td>
               </tr>
             </tbody>
           </table>
@@ -52,3 +53,53 @@
     </div>
   </div>
 </div>
+
+
+<div mdbModal #frame="mdbModal" class="modal fade " id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h4 class="modal-title w-100 font-weight-bold">Report</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mx-3">
+          <div class="md-form mb-5">
+              <i class="fas fa-calendar-alt prefix grey-text"></i>
+              <input type="text" id="orangeForm-date" [formControl]="date" class="form-control validate" mdbInput>
+              <label data-error="wrong" data-success="right" for="orangeForm-name">Date</label>
+          </div>
+  
+          <div class="md-form mb-5">
+            <i class="fas fa-clock prefix grey-text"></i>
+            <input type="text" id="orangeForm-startTime"  [formControl]="startTime" class="form-control validate" mdbInput>
+            <label data-error="wrong" data-success="right" for="orangeForm-name">Start Time</label>
+          </div>
+  
+          <div class="md-form mb-5">
+            <i class="fas fa-clock prefix grey-text"></i>
+            <input type="email" id="orangeForm-endTime"  [formControl]="endTime" class="form-control validate" mdbInput>
+            <label data-error="wrong" data-success="right" for="orangeForm-email">End Time</label>
+          </div>
+  
+          <div class="md-form mb-4">
+            <i class="fas fa-money-bill-alt prefix grey-text"></i>
+            <input type="text" id="orangeForm-cost"  [formControl]="cost" class="form-control validate" mdbInput>
+            <label data-error="wrong" data-success="right" for="orangeForm-pass">Cost</label>
+          </div>
+  
+          <div class="md-form mb-5">
+              <i class="fas fa-tasks prefix grey-text"></i>
+              <input type="text" id="orangeForm-jobTicket"  [formControl]="jobTicket" class="form-control validate" mdbInput>
+              <label data-error="wrong" data-success="right" for="orangeForm-name">Job Ticket</label>
+            </div>
+  
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button id={{i}} mdbBtn color="primary" class="waves-light" mdbWavesEffect (click)="frame.hide()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

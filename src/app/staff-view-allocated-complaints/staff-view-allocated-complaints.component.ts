@@ -4,6 +4,8 @@ import { element } from '@angular/core/src/render3';
 import { DomSanitizer } from '@angular/platform-browser';
 import { StoreStatusService} from '../store-status.service';
 import {WebsocketService} from '../websocket.service';
+import { FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-staff-view-allocated-complaints',
@@ -13,6 +15,7 @@ import {WebsocketService} from '../websocket.service';
 export class StaffViewAllocatedComplaintsComponent implements OnInit {
 
   index=0
+  selectedElementIndex;
   imagePath
   constructor(
     public staffService:StaffServiceService,
@@ -21,13 +24,16 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
     private webSocketService:WebsocketService
   ) { }
 
-  elements: any = [
-    {id: 1, first: 'Mark', last: 'Otto', handle: '@mdo'},
-    {id: 2, first: 'Jacob', last: 'Thornton', handle: '@fat'},
-    {id: 3, first: 'Larry', last: 'the Bird', handle: '@twitter'},
-  ];
+  elements
 
-  headElements = ['Complaint Number','Customer Name', 'Equipment Name', 'Equipment Fault', 'Phone','Date','Image'];
+  headElements = ['Complaint Number','Customer Name', 'Equipment Name', 'Equipment Fault', 'Phone','Date','Image','Add Report'];
+
+  date= new FormControl('');
+  startTime= new FormControl('');
+  endTime= new FormControl('');
+  cost = new FormControl('');
+  jobTicket = new FormControl('');
+  
 
   ngOnInit() {
 
@@ -38,7 +44,6 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
     this.staffService.getAllocatedComplaints(localStorage.getItem('empId'))
     .subscribe(complaints=>{
       this.elements=complaints
-      console.log(this.elements)
     })
     
     this.webSocketService.getNotification()
@@ -56,6 +61,30 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
     var elementIndex=target.attributes.id.value;
     var image = this.elements[elementIndex].image
     this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:'+image.filename+';base64,'+image.filevalue);
+  }
+
+  setSelectedElement(event)
+  {
+    var target=event.target || event.srcElement || event.currentTarget
+    this.selectedElementIndex=target.attributes.id.value;
+  }
+
+  addReport()
+  {
+    var report={
+      date:this.date.value,
+      startTime:this.startTime.value,
+      endTime:this.endTime.value,
+      cost:this.cost.value,
+      jobTicket:this.jobTicket.value,
+      id:this.elements[this.selectedElementIndex]._id
+    }
+    this.staffService.addReportToComplaint(report).
+    subscribe(complaint=>{
+      alert("sucessfully added the report")
+    })
+   
+    
   }
 
 }

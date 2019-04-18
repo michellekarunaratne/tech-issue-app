@@ -2,12 +2,14 @@ const mongoose=require('mongoose');
 const Schema =mongoose.Schema;
 const StaffSchema=require('../models/staff')
 const EquipmentSchema=require('../models/equipment')
+const ReportSchema=require('../models/report')
+
 
 
 ////including embedded documents into the document
 var Customer=require('mongoose').model('Customer').schema
 var Staff=require('mongoose').model('Staff').schema
-var Equipment=require('mongoose').model('Equipment').schema
+var Report=require('mongoose').model('Report').schema
 
 
 var complaintSchema= new Schema (
@@ -22,9 +24,10 @@ var complaintSchema= new Schema (
        phone:Number,
        address:String,
        allocatedStaff:{type:Boolean,default:false},
-       customer:[Customer],
-       staff:[Staff],
-       date:String
+       customer:Customer,
+       staff:Staff,
+       date:String,
+       report:Report
        //equipment:[Equipment],
        
     }
