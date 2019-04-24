@@ -34,4 +34,25 @@ export class StaffServiceService {
     return this.http.post<Complaint>(`${this.url}/addReport`,report)
   }
 
+  getUnallocatedComplaint()
+  {
+    return this.http.get<Complaint[]>(`${this.url}/getUnallocatedComplaints`)
+  }
+
+  acceptComplaint(empId,complaintId)
+  {
+    const params= new HttpParams()
+    .set('empId',empId)
+    .set('complaintId',complaintId)
+    
+    return this.http.get<Complaint>(`${this.url}/acceptComplaint`,{params})
+  }
+
+  logoutActiveStaffMembers(empId)
+  {
+    const params= new HttpParams()
+    .set('empId',empId) 
+    return this.http.get<User>(`${this.url}/logoutActiveStaff`,{params})
+  }
+
 }

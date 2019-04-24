@@ -61,12 +61,12 @@ io.on('connection',function(socket){
           
         })
         .catch(function(error){
-          console.log(error)
+         
         })
       }
     })
     .catch(function(error){
-      console.log(error)
+      //io.sockets.connected.emit('NoStaffMemberNotification',{msg:"No Avaialable staff member to allocate complaints"})
     })
 
    
@@ -178,4 +178,32 @@ app.post('/staff/addReport',jsonencodedParser,(req,res)=>{
   })
 })
 
+app.get('/staff/getUnallocatedComplaints',jsonencodedParser,(req,res)=>{
+  Complaint.getUnallocatedComplaints()
+  .then(function(doc){
+    res.send(doc)
+  })
+  .catch(function(error){
+    res.send(error)
+  })
+})
   
+app.get('/staff/acceptComplaint',jsonencodedParser,(req,res)=>{
+  Complaint.manuallyAllocateStaffToComplaint(req.query.empId,req.query.complaintId)
+  .then(function(doc){
+    res.send(doc)
+  })
+  .catch(function(error){
+    res.send(error)
+  })
+})
+
+app.get('/staff/logoutActiveStaff',jsonencodedParser,(req,res)=>{
+  User.removeActiveStaff(req.query.empId)
+  .then(function(doc){
+    res.send(doc)
+  })
+  .catch(function(error){
+    res.send(error)
+  })
+})

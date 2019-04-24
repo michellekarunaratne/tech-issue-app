@@ -1,6 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import { MatDatepickerModule,MatNativeDateModule } from '@angular/material';
+
+
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -22,6 +27,7 @@ import { EditCustomerDetailsComponent } from './edit-customer-details/edit-custo
 import { StaffViewAllocatedComplaintsComponent } from './staff-view-allocated-complaints/staff-view-allocated-complaints.component';
 import { StaffEditDetailsComponent } from './staff-edit-details/staff-edit-details.component';
 import { StaffCreateJobTicketComponent } from './staff-create-job-ticket/staff-create-job-ticket.component';
+import { StaffManuallyAllocateComplaintsComponent } from './staff-manually-allocate-complaints/staff-manually-allocate-complaints.component';
 
 @NgModule({
   declarations: [
@@ -37,10 +43,16 @@ import { StaffCreateJobTicketComponent } from './staff-create-job-ticket/staff-c
     EditCustomerDetailsComponent,
     StaffViewAllocatedComplaintsComponent,
     StaffEditDetailsComponent,
-    StaffCreateJobTicketComponent    
+    StaffCreateJobTicketComponent,
+    StaffManuallyAllocateComplaintsComponent 
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
     MDBBootstrapModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,

@@ -30,9 +30,17 @@ export class WebsocketService {
   getNotification(){
     return new Observable((observable)=>{
       this.socket.on('staffMemberNotification',(msg)=>{
-        observable.next("Hello from get notification")
+        observable.next("You have a complaint to attend to")
       })
     })
 
+  }
+
+  getNoStaffMembernotfication(){
+    return new Observable((observable)=>{
+      this.socket.on('NoStaffMemberNotification',(msg)=>{
+        observable.next("No Avaialable staff member to allocate complaints")
+      })
+    })
   }
 }

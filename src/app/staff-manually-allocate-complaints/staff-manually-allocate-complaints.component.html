@@ -1,0 +1,62 @@
+<br><br><br>
+
+<div class="col-sm-4 offset-sm-4 text-center">
+    <mdb-card class="text-white" bgColor="bg-primary">
+      <mdb-card-body>
+        <h4>Staff Member Allocated Complaint Log</h4>
+      </mdb-card-body>
+    </mdb-card>
+</div>
+
+<br><br><br>
+
+<br><br><br>
+
+<div class="col-sm-10 offset-sm-1 text-center">
+    <mdb-card>
+      <mdb-card-body>
+          <table mdbTable hover="true" mdbTable striped="true">
+            <thead class="primary-color white-text">
+              <tr>
+                <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr mdbTableCol *ngFor="let el of elements ; let i=index">
+                <th>{{i+1}}</th>
+                <td>{{el.customer.firstName +" "+el.customer.lastName}}</td>
+                <td>{{el.equipmentName}}</td>
+                <td>{{el.equipmentFault}}</td>
+                <td>{{el.customer.phone}}</td>
+                <td>{{el.date}}</td>
+                <td><button id={{i}} mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0" (click)="[basicModal.show(),setImageSrc($event)]">View Image</button></td>
+                <td><button id={{i}} mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0" (click)="acceptComplaint($event)">Accept</button></td>
+              </tr>
+            </tbody>
+          </table>
+      </mdb-card-body>
+    </mdb-card>
+</div>
+
+<div mdbModal #basicModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100 text-center modal-sucess" id="myModalLabel">Equipment Image</h4>
+      </div>
+      <div class="modal-body">
+        <img style="float:center" height="200" [src]="imagePath" *ngIf=imagePath>
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="primary" class="waves-light" aria-label="Close" (click)="basicModal.hide()" mdbWavesEffect>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

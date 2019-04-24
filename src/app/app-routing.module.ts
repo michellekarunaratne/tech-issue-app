@@ -10,6 +10,7 @@ import { StaffDashBoardComponent} from './staff-dash-board/staff-dash-board.comp
 import { EditCustomerDetailsComponent} from './edit-customer-details/edit-customer-details.component';
 import { StaffViewAllocatedComplaintsComponent} from './staff-view-allocated-complaints/staff-view-allocated-complaints.component';
 import { StaffEditDetailsComponent } from './staff-edit-details/staff-edit-details.component';
+import { StaffManuallyAllocateComplaintsComponent } from './staff-manually-allocate-complaints/staff-manually-allocate-complaints.component';
 
 
 const routes:Routes=[
@@ -22,7 +23,8 @@ const routes:Routes=[
   {path:'login',component:LoginComponent},
   {path:'customerDash/editDetails',component:EditCustomerDetailsComponent},
   {path:'staffDash/viewAllocatedComplaints',component:StaffViewAllocatedComplaintsComponent},
-  {path: 'staffDash/editDetails',component:StaffEditDetailsComponent}
+  {path:'staffDash/editDetails',component:StaffEditDetailsComponent},
+  {path:'staffDash/manualAllocation',component:StaffManuallyAllocateComplaintsComponent}
 ];
 @NgModule({
   declarations: [],

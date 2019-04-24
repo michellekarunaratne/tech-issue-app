@@ -98,7 +98,7 @@ function activeStaffLogin(userId,socketId){
 function removeActiveStaff(userId)
 {
     var promise=new Promise(function(resolve,reject){
-        ActiveStaff.deleteOne({userId:userId},function(error,doc){
+        ActiveStaff.deleteOne({"userId":userId},function(error,doc){
             if(error)
             {
                 reject(error)
@@ -113,7 +113,6 @@ function removeActiveStaff(userId)
     return promise
     
 }
-
 
 
 module.exports.userLogin=userLogin;

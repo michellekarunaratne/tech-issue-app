@@ -14,6 +14,7 @@ var activeStaffSchema= new Schema (
       userId:String,
       socketId:String,
       loginStamp:{ type : Date, default:new Date()},
+      complaintAllocated:{type:Boolean,default:false}
       
     }
 )

@@ -2,7 +2,7 @@ import { Component, OnInit,EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import {WebsocketService} from '../websocket.service';
 import { StoreStatusService} from '../store-status.service';
-import {CustomerServiceService} from '../customer-service.service'
+import {CustomerServiceService} from '../customer-service.service';
 
 
 @Component({
@@ -87,6 +87,11 @@ export class LogComplaintsComponent implements OnInit {
 
   ngOnInit() {
     this.storeStatusService.setLoginStatus()
+
+    this.webSocketService.getNoStaffMembernotfication()
+    .subscribe((msg:String)=>{
+      alert(msg)
+    })
   }
 
 }

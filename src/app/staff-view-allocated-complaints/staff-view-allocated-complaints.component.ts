@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { StaffServiceService } from '../staff-service.service';
-import { element } from '@angular/core/src/render3';
 import { DomSanitizer } from '@angular/platform-browser';
 import { StoreStatusService} from '../store-status.service';
 import {WebsocketService} from '../websocket.service';
 import { FormControl, Validators } from '@angular/forms';
+import 'hammerjs';
+
 
 
 @Component({
@@ -17,6 +18,8 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
   index=0
   selectedElementIndex;
   imagePath
+  elements
+  headElements = ['Complaint Number','Customer Name', 'Equipment Name', 'Equipment Fault', 'Phone','Date','Image','Add Report'];
   constructor(
     public staffService:StaffServiceService,
     private _sanitizer: DomSanitizer,
@@ -24,9 +27,7 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
     private webSocketService:WebsocketService
   ) { }
 
-  elements
-
-  headElements = ['Complaint Number','Customer Name', 'Equipment Name', 'Equipment Fault', 'Phone','Date','Image','Add Report'];
+  
 
   date= new FormControl('');
   startTime= new FormControl('');

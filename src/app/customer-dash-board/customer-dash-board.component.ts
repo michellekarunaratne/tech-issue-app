@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreStatusService} from '../store-status.service';
+import {WebsocketService} from '../websocket.service';
 
 @Component({
   selector: 'app-customer-dash-board',
@@ -9,11 +10,18 @@ import { StoreStatusService} from '../store-status.service';
 export class CustomerDashBoardComponent implements OnInit {
 
   constructor(
-    public storeStatusService:StoreStatusService
+    public storeStatusService:StoreStatusService,
+    public webSocketService:WebsocketService,
   ) { }
 
   ngOnInit() {
     this.storeStatusService.setLoginStatus()
+
+    this.webSocketService.getNoStaffMembernotfication()
+    .subscribe((msg:String)=>{
+      alert(msg)
+    })
+    
 
   }
 
