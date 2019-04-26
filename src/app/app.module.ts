@@ -44,7 +44,7 @@ import { StaffManuallyAllocateComplaintsComponent } from './staff-manually-alloc
     StaffViewAllocatedComplaintsComponent,
     StaffEditDetailsComponent,
     StaffCreateJobTicketComponent,
-    StaffManuallyAllocateComplaintsComponent 
+    StaffManuallyAllocateComplaintsComponent
   ],
   imports: [
     BrowserModule,

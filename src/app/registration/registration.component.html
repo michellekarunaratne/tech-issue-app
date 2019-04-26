@@ -14,7 +14,7 @@
 
       <!-- Form -->
       <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()"  class="text-center" style="color: #757575;">
-
+      <!-- <div class="form-group"> -->
         <div class="form-row">
           <div class="col">
             <!-- First name -->
@@ -34,8 +34,13 @@
 
         <!-- E-mail -->
         <div class="md-form mt-0">
-          <input type="email" formControlName="email" class="form-control" mdbInput>
-          <label for="materialRegisterFormEmail"><mdb-icon fas icon="at"></mdb-icon> E-mail</label>
+          <div [ngClass]="{'has-error': (registrationForm.controls.email.errors && registrationForm.controls.email.dirty), 'has-success': !registrationForm.controls.email.errors}">
+            <input type="email" formControlName="email" class="form-control" mdbInput>
+            <label for="materialRegisterFormEmail"><mdb-icon fas icon="at"></mdb-icon> E-mail</label>
+            <ul class="uk-form-help-block">
+              <li *ngIf="registrationForm.controls.email.errors?.required && registrationForm.controls.email.dirty"></li>
+            </ul>
+          </div>
         </div>
 
         <!--Nic-->
@@ -64,7 +69,7 @@
         <!-- Sign up button -->
         <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
           type="submit">Sign in</button>
-
+        <!-- </div> -->
       </form>
       <!-- Form -->
 

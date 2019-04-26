@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { RegistrationService} from '../registration.service'
 import { Router } from '@angular/router';
 
@@ -14,14 +14,19 @@ export class RegistrationComponent implements OnInit {
   registrationForm=this.fb.group({
     firstName:[''],
     lastName:[''],
-    nic:[''],
-    email:[''],
+    nic:['',Validators.required],
+    email:['', Validators.required],
     phone:[''],
     password:['']
   })
 
-  onSubmit()
-  {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private registrationService : RegistrationService
+  ) { }
+
+  onSubmit(){
     this.registrationService.registrationCustomer(this.registrationForm.value)
     .subscribe(user =>{
       if(user)
@@ -34,13 +39,6 @@ export class RegistrationComponent implements OnInit {
       }
     })
   }
-  
-
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private registrationService : RegistrationService
-  ) { }
 
   ngOnInit() {
   }
