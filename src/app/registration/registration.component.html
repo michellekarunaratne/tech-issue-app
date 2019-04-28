@@ -32,9 +32,20 @@
         </div>
 
         <!-- E-mail -->
-        <div class="md-form mt-0">
-            <input type="email" formControlName="email" class="form-control" mdbInput>
-            <label for="materialRegisterFormEmail"><mdb-icon fas icon="at"></mdb-icon> E-mail</label>
+        <div class="form-group">
+          <!-- <div class="md-form mt-0"> -->
+              <input type="email" formControlName="email" class="form-control" mdbInput>
+              <label for="materialRegisterFormEmail"><mdb-icon fas icon="at"></mdb-icon> E-mail</label>
+              <span *ngIf="registrationForm.getError('email').errors.required">
+              <!-- <span *ngIf="registrationForm.get('email').errors.required"> -->
+                Email is required
+              </span>
+          <!-- </div> -->
+        </div>
+        <div *ngIf="registrationForm.controls['email'].invalid && (registrationForm.controls['email'].dirty || registrationForm.controls['email'].touched)" class="alert alert-danger">
+          <div *ngIf="registrationForm.controls['email'].errors.required">
+          Name is required.
+          </div>
         </div>
 
         <!--Nic-->
@@ -66,6 +77,11 @@
 
       </form>
       <!-- Form -->
+
+      <!-- json -->
+      <p>Form value: {{ registrationForm.value | json }}</p>
+      <p>Form status: {{ registrationForm.status | json }}</p>
+
     </mdb-card-body>
 
   </mdb-card>

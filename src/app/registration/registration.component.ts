@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { RegistrationService} from '../registration.service'
 import { Router } from '@angular/router';
 
@@ -11,20 +11,40 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
-  registrationForm=this.fb.group({
-    firstName:[''],
-    lastName:[''],
-    nic:['', Validators.required],
-    email:['', Validators.required],
-    phone:[''],
-    password:['']
-  })
+  // constructor(
+  //   private fb: FormBuilder,
+  //   private router: Router,
+  //   private registrationService : RegistrationService
+  // ) { }
 
-  constructor(
+  // registrationForm = this.fb.group({
+  //   firstName:[''],
+  //   lastName:[''],
+  //   nic:['', Validators.required],
+  //   email:['', Validators.required],
+  //   phone:[''],
+  //   password:['', Validators.required]
+  // })
+
+  registrationForm: FormGroup;
+    constructor(
     private fb: FormBuilder,
     private router: Router,
     private registrationService : RegistrationService
-  ) { }
+    ) {
+      this.createForm();
+    }
+
+  createForm() {
+    this.registrationForm = this.fb.group({
+      firstName:[''],
+      lastName:[''],
+      nic:['', Validators.required],
+      email:['', Validators.required],
+      phone:[''],
+      password:['', Validators.required]
+    });
+  }
 
   onSubmit(){
     this.registrationService.registrationCustomer(this.registrationForm.value)
@@ -37,7 +57,7 @@ export class RegistrationComponent implements OnInit {
         }
 
       }
-    })
+    });
   }
 
   ngOnInit() {

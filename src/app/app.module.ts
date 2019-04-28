@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-import { MatDatepickerModule,MatNativeDateModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
+import { MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
 
 
@@ -15,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClient } from 'selenium-webdriver/http';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService} from './login.service';
-import {WebsocketService} from './websocket.service'
+import { WebsocketService } from './websocket.service'
 import { CustomerDashBoardComponent } from './customer-dash-board/customer-dash-board.component';
 import { LogComplaintsComponent } from './log-complaints/log-complaints.component';
 import { AgmCoreModule } from '@agm/core';
