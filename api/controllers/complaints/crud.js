@@ -87,7 +87,7 @@ function manuallyAllocateStaffToComplaint(empId,complaintId)
             .catch(function(error){
                 reject(error)
             })
- 
+
         })
     }
 
@@ -109,7 +109,7 @@ function manuallyAllocateStaffToComplaint(empId,complaintId)
 
     function sendMail(email)
     {
-        
+
             var promise=new Promise(function(resolve,reject){
 
                     nodemailer.createTestAccount((err, account) => {
@@ -120,7 +120,7 @@ function manuallyAllocateStaffToComplaint(empId,complaintId)
                             secure: true, // true for 465, false for other ports
                             auth: {
                                 user:"techhelpwebsystem@gmail.com",
-                                pass:"techhelp_1" 
+                                pass:"techhelp_1"
                             }
                         });
 
@@ -168,7 +168,7 @@ function manuallyAllocateStaffToComplaint(empId,complaintId)
     .then(function(doc){
         return($Vals.complaint)
     })
-    
+
 }
 
 module.exports.manuallyAllocateStaffToComplaint=manuallyAllocateStaffToComplaint;
