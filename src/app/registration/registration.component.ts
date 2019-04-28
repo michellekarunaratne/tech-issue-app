@@ -11,40 +11,20 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
-  // constructor(
-  //   private fb: FormBuilder,
-  //   private router: Router,
-  //   private registrationService : RegistrationService
-  // ) { }
-
-  // registrationForm = this.fb.group({
-  //   firstName:[''],
-  //   lastName:[''],
-  //   nic:['', Validators.required],
-  //   email:['', Validators.required],
-  //   phone:[''],
-  //   password:['', Validators.required]
-  // })
-
-  registrationForm: FormGroup;
-    constructor(
+  constructor(
     private fb: FormBuilder,
     private router: Router,
     private registrationService : RegistrationService
-    ) {
-      this.createForm();
-    }
+  ) { }
 
-  createForm() {
-    this.registrationForm = this.fb.group({
-      firstName:[''],
-      lastName:[''],
-      nic:['', Validators.required],
-      email:['', Validators.required],
-      phone:[''],
-      password:['', Validators.required]
-    });
-  }
+  registrationForm = this.fb.group({
+    firstName:[''],
+    lastName:[''],
+    nic:['', Validators.required],
+    email:['', Validators.required],
+    phone:[''],
+    password:['', Validators.required]
+  });
 
   onSubmit(){
     this.registrationService.registrationCustomer(this.registrationForm.value)
