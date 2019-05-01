@@ -8,7 +8,7 @@
         <strong>Sign up</strong>
       </h5>
     </mdb-card-header>
-
+s
     <!--Card content-->
     <mdb-card-body class="px-lg-5 pt-0">
 
@@ -20,6 +20,10 @@
             <div class="md-form">
               <input type="text" formControlName="firstName" class="form-control" mdbInput>
               <label for="materialRegisterFormFirstName"><mdb-icon fas icon="male"></mdb-icon> First name</label>
+              <mdb-error *ngIf="submitted && form.firstname.errors">First name should not be empty</mdb-error>
+              <small class="form-text text-muted mb-4">
+                At least 3 characters and maximum 15 chracters
+              </small>
             </div>
           </div>
           <div class="col">
@@ -27,6 +31,10 @@
             <div class="md-form">
               <input type="text" formControlName="lastName" class="form-control" mdbInput>
               <label for="materialRegisterFormLastName"><mdb-icon fas icon="male"></mdb-icon> Last name</label>
+              <mdb-error *ngIf="submitted && form.lastname.errors">Last name should not be empty</mdb-error>
+              <small class="form-text text-muted mb-4">
+                At least 5 characters and maximum 15 chracters
+              </small>
             </div>
           </div>
         </div>
@@ -35,23 +43,17 @@
           <div class="md-form mt-0">
               <input type="email" formControlName="email" class="form-control" mdbInput>
               <label for="materialRegisterFormEmail"><mdb-icon fas icon="at"></mdb-icon> E-mail</label>
-              <span *ngIf="registrationForm.getError('email').errors.required">
-              <!-- <span *ngIf="registrationForm.get('email').errors.required"> -->
-                Email is required
-              </span>
-              <div *ngIf="registrationForm.controls['email'].invalid && (registrationForm.controls['email'].dirty || registrationForm.controls['email'].touched)" class="alert alert-danger">
-                <div *ngIf="registrationForm.controls['email'].errors.required">
-                Name is required.
-                </div>
-              </div>
-          <!-- </div> -->
+              <mdb-error *ngIf="submitted && form.email.errors">Email should not be empty</mdb-error>
+              <small class="form-text text-muted mb-4">
+                At least 5 characters and maximum 30 chracters
+              </small>
         </div>
-
 
         <!--Nic-->
         <div class="md-form mt-0">
           <input type="text" formControlName="nic" class="form-control" mdbInput>
           <label for="materialRegisterFormEmail"><mdb-icon fas icon="address-card"></mdb-icon> NIC</label>
+          <mdb-error *ngIf="submitted && form.nic.errors">NIC should not be empty</mdb-error>
         </div>
 
         <!-- Phone number -->
@@ -59,16 +61,31 @@
           <input type="text" formControlName="phone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"
             mdbInput>
           <label for="materialRegisterFormPhone"><mdb-icon fas icon="mobile"></mdb-icon> Phone number</label>
+          <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+            At least 10 digit
+          </small>
         </div>
 
         <!-- Password -->
         <div class="md-form">
           <input type="password" formControlName="password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"
             mdbInput>
+          <mdb-error *ngIf="submitted && form.password.errors">Password should not be empty</mdb-error>
           <label for="materialRegisterFormPassword"><mdb-icon fas icon="unlock"></mdb-icon> Password</label>
           <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
             At least 8 characters and 1 digit
           </small>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="md-form">
+          <input type="password" formControlName="confirmPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"
+            mdbInput>
+          <mdb-error *ngIf="submitted && form.password.errors">Confirm Password should not be empty</mdb-error>
+          <label for="materialRegisterFormPassword"><mdb-icon fas icon="unlock"></mdb-icon>Confirm Password</label>
+          <!-- <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+            At least 8 characters and 1 digit
+          </small> -->
         </div>
 
         <!-- Sign up button -->

@@ -4,5 +4,5 @@ export default class Customer{
     nic:string;
     email:string;
     phone:number;
-    password:string
+    password:string;
 }

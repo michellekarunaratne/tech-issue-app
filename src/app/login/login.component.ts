@@ -15,23 +15,32 @@ import { StoreStatusService} from '../store-status.service';
 })
 export class LoginComponent implements OnInit {
 
-  submitted=false
-  loginForm=this.fb.group({
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    public loginService:LoginService,
+    public webSocketService:WebsocketService,
+    public storeStatusService:StoreStatusService
+    ) { }
+
+  submitted = false;
+  loginForm = this.fb.group({
     userId:['',Validators.required],
     password:['',Validators.required]
 
   });
 
+  ngOnInit() { }
+
   get form() { return this.loginForm.controls; }
 
   onSubmit(){
 
-    
     if(this.loginForm.valid)
     {
         this.loginService.login(this.loginForm.value)
         .subscribe(user =>{
-        
+
           if(user.empId==null && user.nic.includes("v"))
           {
             localStorage.setItem('customer.firstName',user.firstName)
@@ -48,7 +57,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('staff.lastName',user.lastName)
             localStorage.setItem('staff.email',user.email)
             localStorage.setItem('staff.phone',user.phone.toString())
-            
+
             this.storeStatusService.setLoginStatus()
             localStorage.setItem('empId',user.empId)
             this.webSocketService.logActiveStaffUser(user.empId)
@@ -56,31 +65,20 @@ export class LoginComponent implements OnInit {
           }
           else
           {
-            alert("User Not Found")
+            alert('User Not Found');
           }
         });
     }
     else if(this.loginForm.invalid)
     {
-      this.submitted=true
+      this.submitted = true;
     }
   }
 
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    public loginService:LoginService,
-    public webSocketService:WebsocketService,
-    public storeStatusService:StoreStatusService
-    ) { }
 
 
-  ngOnInit() {
-    
-  }
 
-  
 
 
 
