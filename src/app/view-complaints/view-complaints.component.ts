@@ -28,7 +28,7 @@ export class ViewComplaintsComponent implements OnInit {
   
 
 
-  headElements = ['Complaint Number','Equipment Name', 'Equipment Fault','Date','Technician Allocated','Image','View Report'];
+  headElements = ['Complaint Number','Refference Number','Equipment Name', 'Equipment Fault','Date','Technician Allocated','Image','View Report'];
 
 
   constructor(

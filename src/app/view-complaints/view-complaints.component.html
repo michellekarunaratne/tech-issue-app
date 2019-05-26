@@ -22,7 +22,8 @@
             <tbody>
               <tr mdbTableCol *ngFor="let el of elements ; let i=index">
                 <th>{{i+1}}</th>
-                <th scope="row">{{el.equipmentName}}</th>
+                <td>{{el.refferenceNumber}}</td>
+                <td>{{el.equipmentName}}</td>
                 <td>{{el.equipmentFault}}</td>
                 <td>{{el.date}}</td>
                 <td>{{el.allocatedStaff}}</td>

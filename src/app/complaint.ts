@@ -2,6 +2,7 @@ import Report from './report';
 
 export default class Complaint{
     _id:string;
+    refferenceNumber:string;
     equipmentName:string;
     equipmentFault:string;
     phone:string;

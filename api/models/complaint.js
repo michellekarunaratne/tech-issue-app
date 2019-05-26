@@ -14,6 +14,7 @@ var Report=require('mongoose').model('Report').schema
 
 var complaintSchema= new Schema (
     {
+       refferenceNumber:String,
        equipmentName:String,
        equipmentFault:String,
        image:{
@@ -32,5 +33,7 @@ var complaintSchema= new Schema (
        
     }
 )
+
+
 
 module.exports= mongoose.model('Complaint',complaintSchema);

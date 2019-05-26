@@ -72,7 +72,7 @@ export class LogComplaintsComponent implements OnInit {
     .subscribe(complaint=>{
       if(complaint)
       {
-        alert("Complaint sucessfully logged")
+        alert("Complaint sucessfully logged your complaint refference number is "+complaint.refferenceNumber)
         this.webSocketService.notifyStaff();
       }
       else
