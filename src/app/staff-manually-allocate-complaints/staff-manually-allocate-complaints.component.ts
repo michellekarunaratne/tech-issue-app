@@ -3,6 +3,8 @@ import { StoreStatusService} from '../store-status.service';
 import { StaffServiceService } from '../staff-service.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import Complaint from '../complaint';
+import { FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-staff-manually-allocate-complaints',
@@ -11,11 +13,14 @@ import Complaint from '../complaint';
 })
 export class StaffManuallyAllocateComplaintsComponent implements OnInit {
 
+
+  refferenceNumber=new FormControl('');
   index
   selectedElementIndex;
   imagePath
   elements
-  headElements = ['Complaint Number','Customer Name', 'Equipment Name', 'Equipment Fault', 'Phone','Date','Image','Accept'];
+  complaintList;
+  headElements = ['Complaint Number','Refference Number','Customer Name', 'Equipment Name', 'Equipment Fault', 'Phone','Date','Image','Accept'];
 
   constructor(
   
@@ -32,6 +37,7 @@ export class StaffManuallyAllocateComplaintsComponent implements OnInit {
 
     this.staffService.getUnallocatedComplaint()
     .subscribe(complaints=>{
+      this.complaintList=complaints
       this.elements=complaints
     })
   }
@@ -59,8 +65,21 @@ export class StaffManuallyAllocateComplaintsComponent implements OnInit {
     this.staffService.acceptComplaint(localStorage.getItem('empId'),this.elements[this.selectedElementIndex]._id)
     .subscribe(complaint=>{
       alert("you have sucessfully accepted the complaint")
-      this.elements.splice(this.selectedElementIndex,1)
     })
+  }
+
+  findComplaint()
+  {
+    
+    var complaint=this.elements.find(x => x.refferenceNumber==this.refferenceNumber.value);
+    var complaintIndex=this.elements.indexOf(complaint);
+    this.elements=this.elements.slice(complaintIndex,complaintIndex+1);
+    
+  }
+
+  viewAllComplaints()
+  {
+    this.elements=this.complaintList;
   }
 
 }

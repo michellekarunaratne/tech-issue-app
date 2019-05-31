@@ -34,7 +34,7 @@ function getComplaintsOfStaff(empId)
            {
                resolve(doc)
            }
-       })
+       }).sort({date:-1}); 
     })
     return promise
 }

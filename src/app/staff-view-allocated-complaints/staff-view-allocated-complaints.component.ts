@@ -5,6 +5,7 @@ import { StoreStatusService} from '../store-status.service';
 import {WebsocketService} from '../websocket.service';
 import { FormControl, Validators } from '@angular/forms';
 import 'hammerjs';
+import Complaint from '../complaint';
 
 
 
@@ -15,11 +16,14 @@ import 'hammerjs';
 })
 export class StaffViewAllocatedComplaintsComponent implements OnInit {
 
-  index=0
+  index=0;
   selectedElementIndex;
-  imagePath
-  elements
-  headElements = ['Complaint Number','Customer Name', 'Equipment Name', 'Equipment Fault', 'Phone','Date','Image','Add Report'];
+  imagePath;
+  elements;
+  complaintList;
+ 
+  
+  headElements = ['Complaint Number','Refference Number','Customer Name', 'Equipment Name', 'Equipment Fault', 'Phone','Date','Image','Add Report'];
   constructor(
     public staffService:StaffServiceService,
     private _sanitizer: DomSanitizer,
@@ -27,13 +31,13 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
     private webSocketService:WebsocketService
   ) { }
 
-  
 
   date= new FormControl('');
   startTime= new FormControl('');
   endTime= new FormControl('');
   cost = new FormControl('');
   jobTicket = new FormControl('');
+  refferenceNumber=new FormControl('');
   
 
   ngOnInit() {
@@ -44,6 +48,7 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
 
     this.staffService.getAllocatedComplaints(localStorage.getItem('empId'))
     .subscribe(complaints=>{
+      this.complaintList=complaints
       this.elements=complaints
     })
     
@@ -53,7 +58,7 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
     })
 
     this.webSocketService.logActiveStaffUser(localStorage.getItem('empId'))
-   
+
   }
 
   setImageSrc(event)
@@ -68,6 +73,15 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
   {
     var target=event.target || event.srcElement || event.currentTarget
     this.selectedElementIndex=target.attributes.id.value;
+  }
+
+  findComplaint()
+  {
+    
+    var complaint=this.elements.find(x => x.refferenceNumber==this.refferenceNumber.value);
+    var complaintIndex=this.elements.indexOf(complaint);
+    this.elements=this.elements.slice(complaintIndex,complaintIndex+1);
+    
   }
 
   addReport()
@@ -86,6 +100,10 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
     })
    
     
+  }
+  viewAllComplaints()
+  {
+    this.elements=this.complaintList;
   }
 
 }

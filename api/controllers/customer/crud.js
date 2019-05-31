@@ -96,6 +96,7 @@ function logCustomerComplaints(equipmentName,equipmentFault,imageName,imageType,
 
         return new Promise(function(resolve,reject){
             var complaint=new Complaint({
+                refferenceNumber:makeDefaultRefferenceNumber(),
                 equipmentName:equipmentName,
                 equipmentFault:equipmentFault,
                 image:{
@@ -116,6 +117,7 @@ function logCustomerComplaints(equipmentName,equipmentFault,imageName,imageType,
                 }
                 else
                 {
+
                     resolve(doc)
                 }
             })
@@ -128,6 +130,18 @@ function logCustomerComplaints(equipmentName,equipmentFault,imageName,imageType,
         return createComaplaint()
     })
 }
+
+function makeDefaultRefferenceNumber()
+{
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < 8; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+ }
+ 
 
 module.exports.editCustomerDetails=editCustomerDetails;
 module.exports.getCustomerDetails=getCustomerDetails;

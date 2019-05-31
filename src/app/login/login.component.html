@@ -33,7 +33,7 @@
         <!-- UserId -->
         <div class="md-form">
           <input type="text" formControlName="userId" class="form-control" mdbInput>
-          <label for="materialLoginFormEmail">User ID</label>
+          <label for="materialLoginFormEmail"><mdb-icon fas icon="user"></mdb-icon> User ID</label>
           <mdb-error *ngIf="submitted && form.userId.errors">User name invalid</mdb-error>
         </div>
 
@@ -41,7 +41,7 @@
         <!-- Password -->
         <div class="md-form">
           <input type="password" formControlName="password" class="form-control" mdbInput>
-          <label for="materialLoginFormPassword">Password</label>
+          <label for="materialLoginFormPassword"><mdb-icon fas icon="key"></mdb-icon> Password</label>
           <mdb-error *ngIf="submitted && form.password.errors">Password should not be empty</mdb-error>
 
         </div>
