@@ -26,43 +26,50 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
 
-    
+
     if(this.loginForm.valid)
     {
         this.loginService.login(this.loginForm.value)
         .subscribe(user =>{
-        
+
           if(user.empId==null && user.nic.includes("v"))
           {
-            localStorage.setItem('customer.firstName',user.firstName)
-            localStorage.setItem('customer.lastName',user.lastName)
-            localStorage.setItem('customer.email',user.email)
-            localStorage.setItem('customer.phone',user.phone.toString())
-            this.storeStatusService.setLoginStatus()
-            localStorage.setItem('userId',user.nic)
-            this.router.navigate(['/customerDash'])
+            localStorage.setItem('customer.firstName',user.firstName);
+            localStorage.setItem('customer.lastName',user.lastName);
+            localStorage.setItem('customer.email',user.email);
+            localStorage.setItem('customer.phone',user.phone.toString());
+            this.storeStatusService.setLoginStatus();
+            localStorage.setItem('userId',user.nic);
+            this.router.navigate(['/customerDash']);
           }
           else if(user.empId.includes("emp"))
           {
-            localStorage.setItem('staff.firstName',user.firstName)
-            localStorage.setItem('staff.lastName',user.lastName)
-            localStorage.setItem('staff.email',user.email)
-            localStorage.setItem('staff.phone',user.phone.toString())
-            
-            this.storeStatusService.setLoginStatus()
-            localStorage.setItem('empId',user.empId)
-            this.webSocketService.logActiveStaffUser(user.empId)
+            localStorage.setItem('staff.firstName',user.firstName);
+            localStorage.setItem('staff.lastName',user.lastName);
+            localStorage.setItem('staff.email',user.email);
+            localStorage.setItem('staff.phone',user.phone.toString());
+
+            this.storeStatusService.setLoginStatus();
+            localStorage.setItem('empId',user.empId);
+            this.webSocketService.logActiveStaffUser(user.empId);
             this.router.navigate(['/staffDash'])
+
+            //employee : 5cef64838abaa6158cb505d6
+            // this.storeStatusService.setLoginStatus()
+            // localStorage.setItem('empId',"5cef64838abaa6158cb505d6")
+            // this.webSocketService.logActiveStaffUser("5cef64838abaa6158cb505d6")
+            // this.router.navigate(['/staffDash'])
           }
           else
           {
             alert("User Not Found")
           }
+
         });
     }
     else if(this.loginForm.invalid)
     {
-      this.submitted=true
+      this.submitted = true
     }
   }
 
@@ -77,10 +84,10 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    
+
   }
 
-  
+
 
 
 

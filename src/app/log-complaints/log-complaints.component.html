@@ -40,6 +40,14 @@
             <img [src]="imgURL"style="float:center" height="200" *ngIf="imgURL">
         </div>
 
+        <!-- Location input -->
+        <div class="md-form mt-0">
+            <label >Your Location</label><br><br>
+          <agm-map [latitude]="lat" [longitude]="lng">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          </agm-map>
+        </div>
+
         <!-- Phone number -->
         <div class="md-form">
           <input type="text"  formControlName="phone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"mdbInput>

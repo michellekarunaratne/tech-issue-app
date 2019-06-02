@@ -44,7 +44,7 @@ import { StaffManuallyAllocateComplaintsComponent } from './staff-manually-alloc
     StaffViewAllocatedComplaintsComponent,
     StaffEditDetailsComponent,
     StaffCreateJobTicketComponent,
-    StaffManuallyAllocateComplaintsComponent 
+    StaffManuallyAllocateComplaintsComponent
   ],
   imports: [
     BrowserModule,
@@ -58,8 +58,12 @@ import { StaffManuallyAllocateComplaintsComponent } from './staff-manually-alloc
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    // AgmCoreModule.forRoot({
+    //   apiKey: 'AIzaSyArJu7m6povP8xlqd5vVfX7Qz9UaSzm4OQ'
+    // })
+    //new
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyArJu7m6povP8xlqd5vVfX7Qz9UaSzm4OQ'
+      apiKey: 'AIzaSyCZVQiQ5HOprGADSF1kFH5GiOjlXDILuKo'
     })
   ],
   providers: [LoginService],
