@@ -130,3 +130,10 @@ export class LogComplaintsComponent implements OnInit {
   }
 
 }
+
+interface marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  draggable: boolean;
+}
