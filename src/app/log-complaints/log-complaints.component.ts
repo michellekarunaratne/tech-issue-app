@@ -64,7 +64,6 @@ export class LogComplaintsComponent implements OnInit {
     private storeStatusService: StoreStatusService,
     private fb: FormBuilder,
     private customerService: CustomerServiceService,
-    //private map: MapsService //new
 
   ) {}
 
