@@ -26,12 +26,12 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
 
-    
+
     if(this.loginForm.valid)
     {
         this.loginService.login(this.loginForm.value)
         .subscribe(user =>{
-        
+
           if(user.empId==null && user.nic.includes("v"))
           {
             localStorage.setItem('customer.firstName',user.firstName)
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('staff.lastName',user.lastName)
             localStorage.setItem('staff.email',user.email)
             localStorage.setItem('staff.phone',user.phone.toString())
-            
+
             this.storeStatusService.setLoginStatus()
             localStorage.setItem('empId',user.empId)
             this.webSocketService.logActiveStaffUser(user.empId)
@@ -58,6 +58,12 @@ export class LoginComponent implements OnInit {
           {
             alert("User Not Found")
           }
+
+          //employee : 5cef64838abaa6158cb505d6
+            // this.storeStatusService.setLoginStatus()
+            // localStorage.setItem('empId',"5cef64838abaa6158cb505d6")
+            // this.webSocketService.logActiveStaffUser("5cef64838abaa6158cb505d6")
+            // this.router.navigate(['/staffDash'])
         });
     }
     else if(this.loginForm.invalid)
@@ -77,10 +83,10 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    
+
   }
 
-  
+
 
 
 
