@@ -3,8 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import {WebsocketService} from '../websocket.service';
 import { StoreStatusService} from '../store-status.service';
 import {CustomerServiceService} from '../customer-service.service';
-import { MapsService } from '../maps.service'; //new
-
+import { MouseEvent } from '@agm/core'; //new //for mouse event
 
 @Component({
   selector: 'app-log-complaints',
@@ -18,9 +17,31 @@ export class LogComplaintsComponent implements OnInit {
   public message: String;
 
   //new
-  lat: string = '';
-  lng: string = '';
-  location: Object;
+  markers: marker[] = [];
+
+  // google maps zoom level
+  zoom: number = 8;
+
+  title: string = 'My first AGM project';
+  lat: number = 6.928934;
+  lng: number = 79.848490;
+
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`);
+  }
+
+  mapClicked($event: MouseEvent) {
+    this.markers.push({
+      lat: $event.coords.lat,
+      lng: $event.coords.lng,
+      draggable: true
+    });
+  }
+
+  markerDragEnd(m: marker, $event: MouseEvent) {
+    console.log('dragEnd', m, $event);
+  }
+  // end new
 
   logComplaintForm=this.fb.group({
     equipmentName:[''],
@@ -43,7 +64,7 @@ export class LogComplaintsComponent implements OnInit {
     private storeStatusService: StoreStatusService,
     private fb: FormBuilder,
     private customerService: CustomerServiceService,
-    private map: MapsService //new
+    //private map: MapsService //new
 
   ) {}
 
