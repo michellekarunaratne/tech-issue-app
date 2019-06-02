@@ -29,6 +29,9 @@ import { StaffEditDetailsComponent } from './staff-edit-details/staff-edit-detai
 import { StaffCreateJobTicketComponent } from './staff-create-job-ticket/staff-create-job-ticket.component';
 import { StaffManuallyAllocateComplaintsComponent } from './staff-manually-allocate-complaints/staff-manually-allocate-complaints.component';
 
+//new
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +47,7 @@ import { StaffManuallyAllocateComplaintsComponent } from './staff-manually-alloc
     StaffViewAllocatedComplaintsComponent,
     StaffEditDetailsComponent,
     StaffCreateJobTicketComponent,
-    StaffManuallyAllocateComplaintsComponent 
+    StaffManuallyAllocateComplaintsComponent
   ],
   imports: [
     BrowserModule,
@@ -58,9 +61,14 @@ import { StaffManuallyAllocateComplaintsComponent } from './staff-manually-alloc
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyArJu7m6povP8xlqd5vVfX7Qz9UaSzm4OQ'
+    CommonModule,//new
+    FormsModule,
+    AgmCoreModule.forRoot({//new
+      apiKey: 'AIzaSyCZVQiQ5HOprGADSF1kFH5GiOjlXDILuKo'
     })
+    //before apiKey: 'AIzaSyArJu7m6povP8xlqd5vVfX7Qz9UaSzm4OQ'
+
+
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]
