@@ -31,7 +31,6 @@ import { StaffManuallyAllocateComplaintsComponent } from './staff-manually-alloc
 
 //new
 import { CommonModule } from '@angular/common';
-import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -62,12 +61,14 @@ import { AgmCoreModule } from '@agm/core';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    //before apiKey: 'AIzaSyArJu7m6povP8xlqd5vVfX7Qz9UaSzm4OQ'
-    //new
-    CommonModule,
-    AgmCoreModule.forRoot({
+    CommonModule,//new
+    FormsModule,
+    AgmCoreModule.forRoot({//new
       apiKey: 'AIzaSyCZVQiQ5HOprGADSF1kFH5GiOjlXDILuKo'
     })
+    //before apiKey: 'AIzaSyArJu7m6povP8xlqd5vVfX7Qz9UaSzm4OQ'
+
+
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]
