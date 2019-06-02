@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import {WebsocketService} from '../websocket.service';
 import { StoreStatusService} from '../store-status.service';
 import {CustomerServiceService} from '../customer-service.service';
-
+import { MouseEvent } from '@agm/core'; //new //for mouse event
 
 @Component({
   selector: 'app-log-complaints',
@@ -16,54 +16,80 @@ export class LogComplaintsComponent implements OnInit {
   imgURL: any;
   public message: String;
 
+  //new
+  markers: marker[] = [];
+
+  // google maps zoom level
+  zoom: number = 8;
+
+  title: string = 'My first AGM project';
+  lat: number = 6.928934;
+  lng: number = 79.848490;
+
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`);
+  }
+
+  mapClicked($event: MouseEvent) {
+    this.markers.push({
+      lat: $event.coords.lat,
+      lng: $event.coords.lng,
+      draggable: true
+    });
+  }
+
+  markerDragEnd(m: marker, $event: MouseEvent) {
+    console.log('dragEnd', m, $event);
+  }
+  // end new
+
   logComplaintForm=this.fb.group({
     equipmentName:[''],
     equipmentFault:[''],
     phone:[''],
     address:[''],
-    image:null,
-    customerId:null
+    image: null,
+    location: null,
+    customerId: null
 
   })
- 
+
   notifyStaff(){
     this.webSocketService.notifyStaff();
 
   }
 
   constructor(
-    public webSocketService:WebsocketService,
-    private storeStatusService:StoreStatusService,
-    private fb:FormBuilder,
-    private customerService:CustomerServiceService
-
-
+    public webSocketService: WebsocketService,
+    private storeStatusService: StoreStatusService,
+    private fb: FormBuilder,
+    private customerService: CustomerServiceService,
   ) {}
 
 
   preview(files) {
-    if (files.length === 0)
+    if (files.length === 0){
       return;
- 
+    }
+
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
+      this.message = 'Only images are supported.';
       return;
     }
 
     var reader = new FileReader();
     this.imagePath = files;
-    reader.readAsDataURL(files[0]); 
-    reader.onload = (_event) => { 
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
       this.imgURL = reader.result;
-      let file=files[0]
+      const file = files[0]
       this.logComplaintForm.get('image').setValue({
         filename: file.name,
         filetype: file.type,
         filevalue: reader.result.toString().split(',')[1]
-      })
+      });
     }
-    
   }
 
   onSubmit(){
@@ -72,12 +98,12 @@ export class LogComplaintsComponent implements OnInit {
     .subscribe(complaint=>{
       if(complaint)
       {
-        alert("Complaint sucessfully logged your complaint refference number is "+complaint.refferenceNumber)
+        alert('Complaint sucessfully logged your complaint refference number is ' + complaint.refferenceNumber)
         this.webSocketService.notifyStaff();
       }
       else
       {
-        alert("please try again")
+        alert('please try again');
       }
     }
     )
@@ -92,6 +118,20 @@ export class LogComplaintsComponent implements OnInit {
     .subscribe((msg:String)=>{
       alert(msg)
     })
+
+    //old new
+    // this.map.getLocation().subscribe(data => {
+    //   console.log(data);
+    //   this.lat = data.latitude;
+    //   this.lng = data.longitude;
+    // })
   }
 
+}
+
+interface marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  draggable: boolean;
 }
