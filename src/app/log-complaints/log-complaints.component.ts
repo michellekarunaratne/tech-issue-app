@@ -29,9 +29,9 @@ export class LogComplaintsComponent implements OnInit {
   // google maps zoom level
   zoom = 8;
 
-  title = 'My first AGM project';
   lat = 6.928934;
   lng = 79.848490;
+  locationChoosen = false;
   // end new
 
   logComplaintForm = this.fb.group ({
@@ -51,9 +51,10 @@ export class LogComplaintsComponent implements OnInit {
     console.log(`clicked the marker: ${label || index}`);
   }
 
-  mapClicked(event) {
+  markLocation(event) {
     this.lat = event.coords.lat;
     this.lng = event.coords.lng;
+    this.locationChoosen = true;
     console.log(event);
   }
 

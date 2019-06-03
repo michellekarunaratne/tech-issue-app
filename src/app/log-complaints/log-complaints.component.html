@@ -43,31 +43,13 @@
         <!-- Location input -->
         <div class="md-form mt-0">
             <label >Your Location</label><br><br>
-            <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)">
-              <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="markLocation($event)">
+              <agm-marker
+                [latitude]="lat"
+                [longitude]="lng"
+                *ngIf="locationChoosen">
+              </agm-marker>
             </agm-map>
-
-<!-- old map code -->
-            <!-- <agm-map
-            [latitude]="lat"
-            [longitude]="lng"
-            [zoom]="zoom"
-            [disableDefaultUI]="false"
-            [zoomControl]="false"
-            (mapClick)="mapClicked($event)">
-
-            <agm-marker
-                *ngFor="let m of markers; let i = index"
-                (markerClick)="clickedMarker(m.label, i)"
-                [latitude]="m.lat"
-                [longitude]="m.lng"
-                [label]="m.label"
-                [markerDraggable]="m.draggable"
-                (dragEnd)="markerDragEnd(m, $event)">
-
-            </agm-marker>
-
-              </agm-map> -->
         </div>
 
         <!-- Phone number -->
