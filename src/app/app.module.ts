@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
@@ -47,7 +47,9 @@ import { CommonModule } from '@angular/common';
     StaffViewAllocatedComplaintsComponent,
     StaffEditDetailsComponent,
     StaffCreateJobTicketComponent,
-    StaffManuallyAllocateComplaintsComponent
+    StaffManuallyAllocateComplaintsComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -67,9 +69,12 @@ import { CommonModule } from '@angular/common';
       apiKey: 'AIzaSyCZVQiQ5HOprGADSF1kFH5GiOjlXDILuKo'
     })
     //before apiKey: 'AIzaSyArJu7m6povP8xlqd5vVfX7Qz9UaSzm4OQ'
-
-
   ],
+  exports: [
+    HeaderComponent,
+    FooterComponent
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA ],
   providers: [LoginService],
   bootstrap: [AppComponent]
 })

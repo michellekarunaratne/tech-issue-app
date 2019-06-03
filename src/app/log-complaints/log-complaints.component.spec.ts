@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormBuilder,ReactiveFormsModule} from '@angular/forms';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { LogComplaintsComponent } from './log-complaints.component';
 
@@ -8,7 +11,9 @@ describe('LogComplaintsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LogComplaintsComponent ]
+      declarations: [ LogComplaintsComponent ],
+      imports:[ReactiveFormsModule,HttpClientTestingModule],
+      schemas:[CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

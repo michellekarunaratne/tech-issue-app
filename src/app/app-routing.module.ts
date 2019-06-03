@@ -11,6 +11,8 @@ import { EditCustomerDetailsComponent} from './edit-customer-details/edit-custom
 import { StaffViewAllocatedComplaintsComponent} from './staff-view-allocated-complaints/staff-view-allocated-complaints.component';
 import { StaffEditDetailsComponent } from './staff-edit-details/staff-edit-details.component';
 import { StaffManuallyAllocateComplaintsComponent } from './staff-manually-allocate-complaints/staff-manually-allocate-complaints.component';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+
 
 
 const routes:Routes=[
@@ -30,7 +32,7 @@ const routes:Routes=[
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes) 
+    RouterModule.forRoot(routes),
   ],
   exports:[RouterModule]
 })

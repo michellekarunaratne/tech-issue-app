@@ -1,4 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { FormBuilder,ReactiveFormsModule} from '@angular/forms';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
 
 import { StaffManuallyAllocateComplaintsComponent } from './staff-manually-allocate-complaints.component';
 
@@ -8,7 +12,9 @@ describe('StaffManuallyAllocateComplaintsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StaffManuallyAllocateComplaintsComponent ]
+      declarations: [ StaffManuallyAllocateComplaintsComponent ],
+      imports:[ReactiveFormsModule,HttpClientTestingModule],
+      schemas:[CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));
