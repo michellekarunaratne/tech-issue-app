@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators, FormControl,FormGroup} from '@angular/forms';
 import { RegistrationService} from '../registration.service'
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-registration',
@@ -12,29 +11,62 @@ import { Router } from '@angular/router';
 export class RegistrationComponent implements OnInit {
 
   registrationForm=this.fb.group({
-    firstName:[''],
-    lastName:[''],
-    nic:[''],
-    email:[''],
-    phone:[''],
-    password:['']
+    firstName:['',Validators.required],
+    lastName:['',Validators.required],
+    nic:['',Validators.required],
+    email:['',[Validators.required,Validators.email]],
+    phone:['',[Validators.required,Validators.pattern('[0-9]+')]],
+    password:['',[Validators.required]],
+    confirmPassword:['',[Validators.required]]
+  }, {
+    validator: this.MustMatch('password', 'confirmPassword')
   })
+
+  submitted=false
+  get form() { return this.registrationForm.controls; }
 
   onSubmit()
   {
-    this.registrationService.registrationCustomer(this.registrationForm.value)
-    .subscribe(user =>{
-      if(user)
-      {
-        if(confirm("customer registered sucessfully"))
+    if(this.registrationForm.valid)
+    {
+      this.registrationService.registrationCustomer(this.registrationForm.value)
+      .subscribe(user =>{
+        if(user)
         {
-          this.router.navigate(['/customerDash'])
+          if(confirm("customer registered sucessfully"))
+          {
+            this.router.navigate(['/customerDash'])
+          }
+
+        }
+      })
+    }
+    else if (this.registrationForm.invalid)
+    {
+        this.submitted=true
+    }
+  }
+
+
+// custom validator to check that two fields match
+ MustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+
+        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+            // return if another validator has already found an error on the matchingControl
+            return;
         }
 
-      }
-    })
-  }
-  
+        // set error on matchingControl if validation fails
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ mustMatch: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
+}
 
   constructor(
     private fb: FormBuilder,

@@ -6,7 +6,6 @@ import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import { MatDatepickerModule,MatNativeDateModule } from '@angular/material';
 
 
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -48,6 +47,8 @@ import { CommonModule } from '@angular/common';
     StaffEditDetailsComponent,
     StaffCreateJobTicketComponent,
     StaffManuallyAllocateComplaintsComponent,
+    
+
 
 
   ],
