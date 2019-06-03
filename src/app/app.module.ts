@@ -68,7 +68,6 @@ import { CommonModule } from '@angular/common';
     })
     //before apiKey: 'AIzaSyArJu7m6povP8xlqd5vVfX7Qz9UaSzm4OQ'
 
-
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]
