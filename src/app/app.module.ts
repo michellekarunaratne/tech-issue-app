@@ -72,7 +72,9 @@ import { CommonModule } from '@angular/common';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+
+
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA,NO_ERRORS_SCHEMA ],
   providers: [LoginService],
