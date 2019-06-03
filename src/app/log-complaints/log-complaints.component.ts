@@ -16,8 +16,7 @@ export class LogComplaintsComponent implements OnInit {
     public webSocketService: WebsocketService,
     private storeStatusService: StoreStatusService,
     private fb: FormBuilder,
-    private customerService: CustomerServiceService,
-    private map: MapsService//new
+    private customerService: CustomerServiceService
   ) {}
 
   public imagePath;
