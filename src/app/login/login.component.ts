@@ -60,13 +60,6 @@ export class LoginComponent implements OnInit {
           {
             alert("User Not Found")
           }
-
-          //employee : 5cef64838abaa6158cb505d6
-            // this.storeStatusService.setLoginStatus()
-            // localStorage.setItem('empId',"5cef64838abaa6158cb505d6")
-            // this.webSocketService.logActiveStaffUser("5cef64838abaa6158cb505d6")
-            // this.router.navigate(['/staffDash'])
-
         });
     }
     else if(this.loginForm.invalid)
@@ -74,7 +67,6 @@ export class LoginComponent implements OnInit {
       this.submitted = true
     }
   }
-
 
   constructor(
     private fb: FormBuilder,

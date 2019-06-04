@@ -23,12 +23,7 @@ export class LogComplaintsComponent implements OnInit {
   imgURL: any;
   public message: String;
 
-  // new
-  markers: marker[] = [];
-
-  // google maps zoom level
-  zoom = 8;
-
+  //new
   lat = 6.928934;
   lng = 79.848490;
   locationChoosen = false;
@@ -40,41 +35,21 @@ export class LogComplaintsComponent implements OnInit {
     phone: [''],
     address: [''],
     image: null,
-    // locationLat: this.lat,
-    // locationLng: this.lng,
+    location: null,
     customerId: null
 
-// tslint:disable-next-line: semicolon
   })
-
-  clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`);
-  }
 
   markLocation(event) {
     this.lat = event.coords.lat;
     this.lng = event.coords.lng;
     this.locationChoosen = true;
     console.log(event);
+    this.logComplaintForm.get('location').setValue({
+      latitude: this.lat,
+      longitude: this.lng
+    });
   }
-
-  // mapClicked($event: MouseEvent) {
-  //   this.markers.push({
-  //     lat: $event.coords.lat,
-  //     lng: $event.coords.lng,
-  //     draggable: true
-  //   });
-
-  //   this.map.getLocation().subscribe(data => {
-  //     console.log(data);
-  //     this.lat = data.latitude;
-  //     this.lng = data.longitude;
-  //   });
-  // }
-  //
-  // markerDragEnd(m: marker, $event: MouseEvent) {
-  //   console.log('dragEnd', m, $event);
-  // }
 
   notifyStaff() {
     this.webSocketService.notifyStaff();
@@ -119,7 +94,6 @@ export class LogComplaintsComponent implements OnInit {
       }
     }
     );
-
   }
 
 
@@ -130,20 +104,6 @@ export class LogComplaintsComponent implements OnInit {
     .subscribe((msg: String) => {
       alert(msg);
     });
-
-    // old new
-    // this.map.getLocation().subscribe(data => {
-    //   console.log(data);
-    //   this.lat = data.latitude;
-    //   this.lng = data.longitude;
-    // });
   }
 
-}
-
-interface marker {
-  lat: number;
-  lng: number;
-  // label?: string;
-  draggable: boolean;
 }

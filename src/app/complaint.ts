@@ -12,6 +12,10 @@ export default class Complaint{
         filetype:string;
         filevalue:string;
     }
+    location:{//new
+      latitude:String,//new
+      longitude:String//new
+    }
     customerId:String;
     allocatedStaff:Boolean;
     date:Date;

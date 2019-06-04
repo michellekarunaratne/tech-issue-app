@@ -48,7 +48,7 @@ io.on('connection', function(socket){
 });
 
 io.on('connection',function(socket){
-  
+
   socket.on('notifyStaff',function(customerId){
     ActiveStaff.getActiveStaffMember()
     .then(function(doc){
@@ -58,10 +58,10 @@ io.on('connection',function(socket){
         ActiveStaff.allocateStaffToComplaint(customerId,doc.userId)
         .then(function(doc){
           console.log("succesful")
-          
+
         })
         .catch(function(error){
-         
+
         })
       }
     })
@@ -69,8 +69,8 @@ io.on('connection',function(socket){
       //io.sockets.connected.emit('NoStaffMemberNotification',{msg:"No Avaialable staff member to allocate complaints"})
     })
 
-   
-    
+
+
   })
 })
 
@@ -103,7 +103,7 @@ app.post('/userRegistration/customer',jsonencodedParser,(req,res)=>{
 })
 
 app.post('/logComplaint',jsonencodedParser,(req,res)=>{
-  
+
 })
 
 app.post('/activeStaffLogout',jsonencodedParser,(req,res)=>{
@@ -128,7 +128,7 @@ app.post('/customer/editCustomerDetails',jsonencodedParser,(req,res)=>{
 })
 
 app.post('/customer/logComplaints',jsonencodedParser,(req,res)=>{
-  Customer.logCustomerComplaints(req.body.equipmentName,req.body.equipmentFault,req.body.image.filename,req.body.image.filetype,req.body.image.filevalue,req.body.phone,req.body.address,req.body.customerId)
+  Customer.logCustomerComplaints(req.body.equipmentName,req.body.equipmentFault,req.body.image.filename,req.body.image.filetype,req.body.image.filevalue,req.body.location.latitude,req.body.location.longitude,req.body.phone,req.body.address,req.body.customerId)
   .then(function(doc){
     res.send(doc)
   })
@@ -187,7 +187,7 @@ app.get('/staff/getUnallocatedComplaints',jsonencodedParser,(req,res)=>{
     res.send(error)
   })
 })
-  
+
 app.get('/staff/acceptComplaint',jsonencodedParser,(req,res)=>{
   Complaint.manuallyAllocateStaffToComplaint(req.query.empId,req.query.complaintId)
   .then(function(doc){

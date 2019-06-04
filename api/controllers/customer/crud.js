@@ -69,7 +69,7 @@ function editCustomerDetails(firstName,lastName,nic,email,phone)
     return promise
 }
 
-function logCustomerComplaints(equipmentName,equipmentFault,imageName,imageType,imageValue,phone,address,userId)
+function logCustomerComplaints(equipmentName,equipmentFault,imageName,imageType,imageValue,lat,lng,phone,address,userId)
 {
     const $Vals={};
 
@@ -88,7 +88,7 @@ function logCustomerComplaints(equipmentName,equipmentFault,imageName,imageType,
             })
         })
     }
-   
+
     function createComaplaint()
     {
         var moment=require('moment')
@@ -103,6 +103,10 @@ function logCustomerComplaints(equipmentName,equipmentFault,imageName,imageType,
                     filename:imageName,
                     filetype:imageType,
                     filevalue:imageValue
+                },
+                location:{
+                  latitude:lat,
+                  longitude:lng
                 },
                 phone:parseInt(phone),
                 address:address,
@@ -141,7 +145,7 @@ function makeDefaultRefferenceNumber()
     }
     return result;
  }
- 
+
 
 module.exports.editCustomerDetails=editCustomerDetails;
 module.exports.getCustomerDetails=getCustomerDetails;
