@@ -14,7 +14,7 @@ import { FormControl, Validators } from '@angular/forms';
 export class StaffManuallyAllocateComplaintsComponent implements OnInit {
 
 
-  refferenceNumber=new FormControl('');
+  refferenceNumber=new FormControl('',Validators.required);
   index
   selectedElementIndex;
   imagePath
@@ -68,13 +68,19 @@ export class StaffManuallyAllocateComplaintsComponent implements OnInit {
     })
   }
 
+  submitted=false
   findComplaint()
   {
-    
-    var complaint=this.elements.find(x => x.refferenceNumber==this.refferenceNumber.value);
-    var complaintIndex=this.elements.indexOf(complaint);
-    this.elements=this.elements.slice(complaintIndex,complaintIndex+1);
-    
+    if(this.refferenceNumber.valid)
+    {
+      var complaint=this.elements.find(x => x.refferenceNumber==this.refferenceNumber.value);
+      var complaintIndex=this.elements.indexOf(complaint);
+      this.elements=this.elements.slice(complaintIndex,complaintIndex+1);
+    }
+    else if(this.refferenceNumber.invalid)
+    {
+      this.submitted=true
+    } 
   }
 
   viewAllComplaints()

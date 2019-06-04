@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 
 import { StaffDashBoardComponent } from './staff-dash-board.component';
 
@@ -8,7 +10,8 @@ describe('StaffDashBoardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StaffDashBoardComponent ]
+      declarations: [ StaffDashBoardComponent ],
+      schemas:[CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

@@ -21,6 +21,7 @@
             <div class="md-form">
               <input type="text" formControlName="firstName" class="form-control" mdbInput>
               <label for="materialRegisterFormFirstName"><mdb-icon fas icon="male"></mdb-icon> First name</label>
+              <mdb-error *ngIf="submitted && form.firstName.errors">First name should not be empty</mdb-error>
             </div>
           </div>
           <div class="col">
@@ -28,39 +29,61 @@
             <div class="md-form">
               <input type="text" formControlName="lastName" class="form-control" mdbInput>
               <label for="materialRegisterFormLastName"><mdb-icon fas icon="male"></mdb-icon> Last name</label>
+              <mdb-error *ngIf="submitted && form.lastName.errors">Last name should not be empty</mdb-error>
             </div>
           </div>
         </div>
 
         <!-- E-mail -->
         <div class="md-form mt-0">
-          <input type="email" formControlName="email" class="form-control" mdbInput>
+          <input type="email" formControlName="email" class="form-control" mdbInput [ngClass]="{ 'mdb-error': submitted && form.email.errors}">
           <label for="materialRegisterFormEmail"><mdb-icon fas icon="at"></mdb-icon> E-mail</label>
+          <div *ngIf="submitted && form.phone.errors">
+              <mdb-error *ngIf="submitted && form.phone.errors.required">Email should not be empty</mdb-error>
+              <mdb-error *ngIf="submitted && form.phone.errors.pattern">Invalid email address</mdb-error>
+          </div>
         </div>
 
         <!--Nic-->
         <div class="md-form mt-0">
           <input type="text" formControlName="nic" class="form-control" mdbInput>
           <label for="materialRegisterFormEmail"><mdb-icon fas icon="address-card"></mdb-icon> NIC</label>
+          <mdb-error *ngIf="submitted && form.nic.errors.required">Nic should not be empty</mdb-error>
         </div>
 
         <!-- Phone number -->
         <div class="md-form">
-          <input type="text" formControlName="phone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"
-            mdbInput>
+          <input type="text" formControlName="phone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"mdbInput [ngClass]="{ 'mdb-error': submitted && form.phone.errors}">
           <label for="materialRegisterFormPhone"><mdb-icon fas icon="mobile"></mdb-icon> Phone number</label>
+          <div *ngIf="submitted && form.phone.errors">
+              <mdb-error *ngIf="submitted && form.phone.errors.required">Phone number should not be empty</mdb-error>
+              <mdb-error *ngIf="submitted && form.phone.errors.pattern">Phone number should only contains digits</mdb-error>
+          </div>
         </div>
 
         <!-- Password -->
         <div class="md-form">
-          <input type="password" formControlName="password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"
-            mdbInput>
+          <input type="password" formControlName="password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"mdbInput  [ngClass]="{ 'mdb-error': submitted && form.password.errors}">
           <label for="materialRegisterFormPassword"><mdb-icon fas icon="unlock"></mdb-icon> Password</label>
+          <div *ngIf="submitted && form.password.errors">
+              <mdb-error *ngIf="submitted && form.password.errors.required">Password should not be empty</mdb-error>
+          </div>
           <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-            At least 8 characters and 1 digit
+            <br>At least 8 characters and 1 digit
           </small>
+          
         </div>
 
+        <!--Confirm password-->
+        <div class="md-form">
+            <input type="password" formControlName="confirmPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"mdbInput  [ngClass]="{ 'mdb-error': submitted && form.confirmPassword.errors}">
+            <label for="materialRegisterFormPassword"><mdb-icon fas icon="unlock"></mdb-icon> Confirm Password</label>
+            <div *ngIf="submitted && form.confirmPassword.errors">
+                <mdb-error *ngIf="submitted && form.confirmPassword.errors.required">Password should not be empty</mdb-error>
+                <mdb-error *ngIf="submitted && form.confirmPassword.errors.mustMatch">Password should match</mdb-error>
+            </div>
+        </div>
+              
         <!-- Sign up button -->
         <button mdbBtn color="info" outline="true" rounded="true" block="true" class="my-4 waves-effect z-depth-0" mdbWavesEffect
           type="submit">Sign in</button>

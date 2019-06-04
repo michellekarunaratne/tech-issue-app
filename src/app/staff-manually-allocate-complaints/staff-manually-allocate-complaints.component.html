@@ -80,6 +80,7 @@
               <div class="col-8">
                   <input mdbInput type="text" id="form1" [formControl]="refferenceNumber" class="form-control" onfocus="this.value=''">
                   <label for="form1" class=""><mdb-icon far icon="address-card"></mdb-icon> Refference Number </label>
+                  <mdb-error *ngIf="submitted && refferenceNumber.errors">Refference number should not be empty</mdb-error>
               </div>
               <div class="col-4">
                   <button type="button" mdbBtn color="primary" class="float-right waves-light" mdbWavesEffect (click)="findComplaint()">Find</button>

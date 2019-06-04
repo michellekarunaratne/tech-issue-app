@@ -1,6 +1,6 @@
 import { Component, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { StoreStatusService} from '../store-status.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators} from '@angular/forms';
 import { last } from '@angular/router/src/utils/collection';
 import {CustomerServiceService} from '../customer-service.service'
 
@@ -13,8 +13,9 @@ export class EditCustomerDetailsComponent implements OnInit{
 
   @ViewChild('alert') alert: ElementRef;
 
+  submitted=false
 
-
+ 
   closeAlert() {
     this.alert.nativeElement.classList.remove('show');
     this.setSuccess(false)
@@ -33,12 +34,14 @@ export class EditCustomerDetailsComponent implements OnInit{
   }
  
   editCustomerDetailsForm=this.fb.group({
-    firstName:[''],
-    lastName:[''],
-    email:[''],
-    phone:['']
+    firstName:['',Validators.required],
+    lastName:['',Validators.required],
+    email:['',[Validators.required, Validators.email]],
+    phone:['',[Validators.required,Validators.pattern('[0-9]+')]]
   })
 
+
+  get form() { return this.editCustomerDetailsForm.controls; }
 
   constructor(
     public storeStatusService:StoreStatusService,
@@ -59,18 +62,25 @@ export class EditCustomerDetailsComponent implements OnInit{
 
   onSubmit()
   {
-    this.editCustomerDetailsForm.value.nic=localStorage.getItem('userId')
-    this.customerService.editCustomerDetails(this.editCustomerDetailsForm.value)
-    .subscribe(customer=>{
-      if(customer)
-      {
-        localStorage.setItem('firstName',customer.firstName)
-        localStorage.setItem('lastName',customer.lastName)
-        localStorage.setItem('email',customer.email)
-        localStorage.setItem('phone',customer.phone.toString())
-        this.setSuccess(true)
-      }
-    })
+    if(this.editCustomerDetailsForm.valid)
+    {
+      this.editCustomerDetailsForm.value.nic=localStorage.getItem('userId')
+      this.customerService.editCustomerDetails(this.editCustomerDetailsForm.value)
+      .subscribe(customer=>{
+        if(customer)
+        {
+          localStorage.setItem('firstName',customer.firstName)
+          localStorage.setItem('lastName',customer.lastName)
+          localStorage.setItem('email',customer.email)
+          localStorage.setItem('phone',customer.phone.toString())
+          this.setSuccess(true)
+        }
+      })
+    }
+    else if(this.editCustomerDetailsForm.invalid)
+    {
+      this.submitted=true;
+    }
   }
 
 }

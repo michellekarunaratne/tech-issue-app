@@ -1,5 +1,5 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component, OnInit,EventEmitter } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import {WebsocketService} from '../websocket.service';
 import { StoreStatusService} from '../store-status.service';
 import {CustomerServiceService} from '../customer-service.service';
@@ -29,11 +29,11 @@ export class LogComplaintsComponent implements OnInit {
   locationChoosen = false;
   // end new
 
-  logComplaintForm = this.fb.group ({
-    equipmentName: [''],
-    equipmentFault: [''],
-    phone: [''],
-    address: [''],
+  logComplaintForm=this.fb.group({
+    equipmentName:['',Validators.required],
+    equipmentFault:['',Validators.required],
+    phone:['',[Validators.required,Validators.pattern('[0-9]+')]],
+    address:[''],
     image: null,
     location: null,
     customerId: null
@@ -51,12 +51,14 @@ export class LogComplaintsComponent implements OnInit {
     });
   }
 
-  notifyStaff() {
+  get form() { return this.logComplaintForm.controls; }
+
+  notifyStaff(){
     this.webSocketService.notifyStaff();
 
   }
 
-
+  submitted=false
   preview(files) {
     if (files.length === 0) {
       return;
@@ -82,18 +84,29 @@ export class LogComplaintsComponent implements OnInit {
     };
   }
 
-  onSubmit() {
-    this.logComplaintForm.get('customerId').setValue(localStorage.getItem('userId'));
-    this.customerService.logCustomerComplain(this.logComplaintForm.value)
-    .subscribe(complaint => {
-      if (complaint) {
-        alert('Complaint sucessfully logged your complaint refference number is ' + complaint.refferenceNumber);
-        this.webSocketService.notifyStaff();
-      } else {
-        alert('please try again');
+  onSubmit(){
+    if(this.logComplaintForm.valid)
+    {
+
+      this.logComplaintForm.get('customerId').setValue(localStorage.getItem('userId'))
+      this.customerService.logCustomerComplain(this.logComplaintForm.value)
+      .subscribe(complaint=>{
+        if(complaint)
+        {
+          alert('Complaint sucessfully logged your complaint refference number is ' + complaint.refferenceNumber)
+          this.webSocketService.notifyStaff();
+        }
+        else
+        {
+          alert('please try again');
+        }
       }
+      )
     }
-    );
+    else if(this.logComplaintForm.invalid)
+    {
+      this.submitted=true
+    }
   }
 
 

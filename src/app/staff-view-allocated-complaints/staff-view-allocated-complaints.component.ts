@@ -37,7 +37,7 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
   endTime= new FormControl('');
   cost = new FormControl('');
   jobTicket = new FormControl('');
-  refferenceNumber=new FormControl('');
+  refferenceNumber=new FormControl('',Validators.required);
   
 
   ngOnInit() {
@@ -75,13 +75,20 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
     this.selectedElementIndex=target.attributes.id.value;
   }
 
+  submitted=false
+
   findComplaint()
   {
-    
-    var complaint=this.elements.find(x => x.refferenceNumber==this.refferenceNumber.value);
-    var complaintIndex=this.elements.indexOf(complaint);
-    this.elements=this.elements.slice(complaintIndex,complaintIndex+1);
-    
+    if(this.refferenceNumber.valid)
+    {
+      var complaint=this.elements.find(x => x.refferenceNumber==this.refferenceNumber.value);
+      var complaintIndex=this.elements.indexOf(complaint);
+      this.elements=this.elements.slice(complaintIndex,complaintIndex+1);
+    }
+    else if(this.refferenceNumber.invalid)
+    {
+      this.submitted=true
+    }
   }
 
   addReport()
