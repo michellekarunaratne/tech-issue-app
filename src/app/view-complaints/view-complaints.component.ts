@@ -25,10 +25,10 @@ export class ViewComplaintsComponent implements OnInit {
   cost = new FormControl('');
   jobTicket = new FormControl('');
 
-  
+  lat:number;
+  lng:number;
 
-
-  headElements = ['Complaint Number','Refference Number','Equipment Name', 'Equipment Fault','Date','Technician Allocated','Image','View Report'];
+  headElements = ['Complaint Number','Refference Number','Equipment Name', 'Equipment Fault','Date','Technician Allocated','Image','Complain Location','View Report'];
 
 
   constructor(
@@ -44,6 +44,16 @@ export class ViewComplaintsComponent implements OnInit {
     var image = this.elements[elementIndex].image
     this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:'+image.filename+';base64,'+image.filevalue);
 
+  }
+
+  setLocation(event)
+  {
+    var target=event.target || event.srcElement || event.currentTarget
+    var elementIndex=target.attributes.id.value;
+    this.lat = parseFloat(this.elements[elementIndex].location.latitude.toString());
+    this.lng = parseFloat(this.elements[elementIndex].location.longitude.toString());
+    console.log(this.lat);
+    console.log(this.lng);
   }
 
   ngOnInit() {

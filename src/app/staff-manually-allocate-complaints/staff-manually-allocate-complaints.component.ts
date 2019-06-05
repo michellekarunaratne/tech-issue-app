@@ -13,6 +13,8 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class StaffManuallyAllocateComplaintsComponent implements OnInit {
 
+  lat:number;
+  lng:number;
 
   refferenceNumber=new FormControl('',Validators.required);
   index
@@ -20,10 +22,10 @@ export class StaffManuallyAllocateComplaintsComponent implements OnInit {
   imagePath
   elements
   complaintList;
-  headElements = ['Complaint Number','Refference Number','Customer Name', 'Equipment Name', 'Equipment Fault', 'Phone','Date','Image','Accept'];
+  headElements = ['Complaint Number','Refference Number','Customer Name', 'Equipment Name', 'Equipment Fault', 'Phone','Date','Image','Location','Accept'];
 
   constructor(
-  
+
   public staffService:StaffServiceService,
   private _sanitizer: DomSanitizer,
   private storeStatusService:StoreStatusService,
@@ -50,6 +52,16 @@ export class StaffManuallyAllocateComplaintsComponent implements OnInit {
     this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:'+image.filename+';base64,'+image.filevalue);
   }
 
+  setLocation(event)
+  {
+    var target=event.target || event.srcElement || event.currentTarget
+    var elementIndex=target.attributes.id.value;
+    this.lat = parseFloat(this.elements[elementIndex].location.latitude.toString());
+    this.lng = parseFloat(this.elements[elementIndex].location.longitude.toString());
+    console.log(this.lat);
+    console.log(this.lng);
+  }
+
   setSelectedElement(event)
   {
     var target=event.target || event.srcElement || event.currentTarget
@@ -61,7 +73,7 @@ export class StaffManuallyAllocateComplaintsComponent implements OnInit {
     var target=event.target || event.srcElement || event.currentTarget
     this.selectedElementIndex=target.attributes.id.value;
 
-    
+
     this.staffService.acceptComplaint(localStorage.getItem('empId'),this.elements[this.selectedElementIndex]._id)
     .subscribe(complaint=>{
       alert("you have sucessfully accepted the complaint")
@@ -80,7 +92,7 @@ export class StaffManuallyAllocateComplaintsComponent implements OnInit {
     else if(this.refferenceNumber.invalid)
     {
       this.submitted=true
-    } 
+    }
   }
 
   viewAllComplaints()

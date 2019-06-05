@@ -22,6 +22,10 @@ var complaintSchema= new Schema (
            filetype:String,
            filevalue:String
        },
+       location:{//new
+         latitude:String,//new
+         longitude:String//new
+       },
        phone:Number,
        address:String,
        allocatedStaff:{type:Boolean,default:false},
@@ -30,7 +34,7 @@ var complaintSchema= new Schema (
        date:String,
        report:Report
        //equipment:[Equipment],
-       
+
     }
 )
 
