@@ -13,6 +13,8 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class StaffManuallyAllocateComplaintsComponent implements OnInit {
 
+  lat:number;
+  lng:number;
 
   refferenceNumber=new FormControl('',Validators.required);
   index
@@ -50,8 +52,14 @@ export class StaffManuallyAllocateComplaintsComponent implements OnInit {
     this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:'+image.filename+';base64,'+image.filevalue);
   }
 
-  setLocation(event){
-
+  setLocation(event)
+  {
+    var target=event.target || event.srcElement || event.currentTarget
+    var elementIndex=target.attributes.id.value;
+    this.lat = parseFloat(this.elements[elementIndex].location.latitude.toString());
+    this.lng = parseFloat(this.elements[elementIndex].location.longitude.toString());
+    console.log(this.lat);
+    console.log(this.lng);
   }
 
   setSelectedElement(event)
