@@ -38,6 +38,7 @@
                 <td>{{el.customer.phone}}</td>
                 <td>{{el.date}}</td>
                 <td><button id={{i}} mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0" (click)="[basicModal.show(),setImageSrc($event)]">View Image</button></td>
+                <td><button id={{i}} mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0" (click)="[basicModal.show(),setLocation($event)]">View Image</button></td>
                 <td><button id={{i}} mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0" (click)="acceptComplaint($event)">Accept</button></td>
               </tr>
             </tbody>
@@ -85,9 +86,9 @@
               <div class="col-4">
                   <button type="button" mdbBtn color="primary" class="float-right waves-light" mdbWavesEffect (click)="findComplaint()">Find</button>
               </div>
-                
+
             </div>
-            
+
           </div>
         </div>
       </div>

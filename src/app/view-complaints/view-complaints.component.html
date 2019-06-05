@@ -28,6 +28,7 @@
                 <td>{{el.date}}</td>
                 <td>{{el.allocatedStaff}}</td>
                 <td><button id={{i}} mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0" (click)="[basicModal.show(),setImageSrc($event)]">View Image</button></td>
+                <td><button id={{i}} mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0" (click)="[basicLocationModal.show(),setLocation($event)]">View Location</button></td>
                 <td><button id={{i}} mdbBtn color="primary" outline="true" size="sm" mdbWavesEffect type="button" class="m-0" (click)="[frame.show(),viewReport($event)]" *ngIf="this.elements[i].report">View Report</button></td>
               </tr>
             </tbody>
@@ -55,6 +56,28 @@
   </div>
 </div>
 
+<!-- for location -->
+<div mdbModal #basicLocationModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100 text-center modal-sucess" id="myModalLabel">Location</h4>
+      </div>
+      <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="setLocation($event)">
+        <agm-marker
+          [latitude]="lat"
+          [longitude]="lng">
+        </agm-marker>
+      </agm-map>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="primary" class="waves-light" aria-label="Close" (click)="basicLocationModal.hide()" mdbWavesEffect>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div mdbModal #frame="mdbModal" class="modal fade " id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -71,31 +94,31 @@
               <input type="text" id="orangeForm-date" [formControl]="date" class="form-control validate" mdbInput>
               <label data-error="wrong" data-success="right" for="orangeForm-name">Date</label>
           </div>
-  
+
           <div class="md-form mb-5">
             <i class="fas fa-clock prefix grey-text"></i>
             <input type="text" id="orangeForm-startTime"  [formControl]="startTime" class="form-control validate" mdbInput>
             <label data-error="wrong" data-success="right" for="orangeForm-name">Start Time</label>
           </div>
-  
+
           <div class="md-form mb-5">
             <i class="fas fa-clock prefix grey-text"></i>
             <input type="email" id="orangeForm-endTime"  [formControl]="endTime" class="form-control validate" mdbInput>
             <label data-error="wrong" data-success="right" for="orangeForm-email">End Time</label>
           </div>
-  
+
           <div class="md-form mb-4">
             <i class="fas fa-money-bill-alt prefix grey-text"></i>
             <input type="text" id="orangeForm-cost"  [formControl]="cost" class="form-control validate" mdbInput>
             <label data-error="wrong" data-success="right" for="orangeForm-pass">Cost</label>
           </div>
-  
+
           <div class="md-form mb-5">
               <i class="fas fa-tasks prefix grey-text"></i>
               <input type="text" id="orangeForm-jobTicket"  [formControl]="jobTicket" class="form-control validate" mdbInput>
               <label data-error="wrong" data-success="right" for="orangeForm-name">Job Ticket</label>
             </div>
-  
+
         </div>
         <div class="modal-footer d-flex justify-content-center">
           <button id={{i}} mdbBtn color="primary" class="waves-light" mdbWavesEffect (click)="frame.hide()">OK</button>
@@ -103,4 +126,4 @@
       </div>
     </div>
   </div>
-  
+

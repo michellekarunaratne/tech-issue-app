@@ -19,11 +19,13 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
   index=0;
   selectedElementIndex;
   imagePath;
+  lat;
+  lng;
   elements;
   complaintList;
- 
-  
-  headElements = ['Complaint Number','Refference Number','Customer Name', 'Equipment Name', 'Equipment Fault', 'Phone','Date','Image','Add Report'];
+
+
+  headElements = ['Complaint Number','Refference Number','Customer Name', 'Equipment Name', 'Equipment Fault', 'Phone','Date','Image','Location','Add Report'];
   constructor(
     public staffService:StaffServiceService,
     private _sanitizer: DomSanitizer,
@@ -38,7 +40,7 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
   cost = new FormControl('');
   jobTicket = new FormControl('');
   refferenceNumber=new FormControl('',Validators.required);
-  
+
 
   ngOnInit() {
 
@@ -51,7 +53,7 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
       this.complaintList=complaints
       this.elements=complaints
     })
-    
+
     this.webSocketService.getNotification()
     .subscribe((msg:String)=>{
       alert(msg)
@@ -67,6 +69,10 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
     var elementIndex=target.attributes.id.value;
     var image = this.elements[elementIndex].image
     this.imagePath = this._sanitizer.bypassSecurityTrustResourceUrl('data:'+image.filename+';base64,'+image.filevalue);
+  }
+
+  setLocation(event){
+
   }
 
   setSelectedElement(event)
@@ -105,8 +111,8 @@ export class StaffViewAllocatedComplaintsComponent implements OnInit {
     subscribe(complaint=>{
       alert("sucessfully added the report")
     })
-   
-    
+
+
   }
   viewAllComplaints()
   {
