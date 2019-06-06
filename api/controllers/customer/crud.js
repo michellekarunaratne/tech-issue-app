@@ -93,7 +93,9 @@ function logCustomerComplaints(equipmentName,equipmentFault,imageName,imageType,
     {
         var moment=require('moment')
         var date=moment().format('LLL')
-
+        var month=parseInt(moment().month())+1
+        var year=moment().year()
+       
         return new Promise(function(resolve,reject){
             var complaint=new Complaint({
                 refferenceNumber:makeDefaultRefferenceNumber(),
@@ -111,7 +113,11 @@ function logCustomerComplaints(equipmentName,equipmentFault,imageName,imageType,
                 phone:parseInt(phone),
                 address:address,
                 customer:$Vals.customer,
-                date:date
+                date:date,
+                dateSep:{
+                    year:year,
+                    month:month
+                }
             })
 
             complaint.save(function(error,doc){

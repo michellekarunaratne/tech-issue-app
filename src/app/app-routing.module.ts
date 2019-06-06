@@ -11,6 +11,8 @@ import { EditCustomerDetailsComponent} from './edit-customer-details/edit-custom
 import { StaffViewAllocatedComplaintsComponent} from './staff-view-allocated-complaints/staff-view-allocated-complaints.component';
 import { StaffEditDetailsComponent } from './staff-edit-details/staff-edit-details.component';
 import { StaffManuallyAllocateComplaintsComponent } from './staff-manually-allocate-complaints/staff-manually-allocate-complaints.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminStatisticsComponent } from './admin-statistics/admin-statistics.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 
@@ -26,7 +28,10 @@ const routes:Routes=[
   {path:'customerDash/editDetails',component:EditCustomerDetailsComponent},
   {path:'staffDash/viewAllocatedComplaints',component:StaffViewAllocatedComplaintsComponent},
   {path:'staffDash/editDetails',component:StaffEditDetailsComponent},
-  {path:'staffDash/manualAllocation',component:StaffManuallyAllocateComplaintsComponent}
+  {path:'staffDash/manualAllocation',component:StaffManuallyAllocateComplaintsComponent},
+  {path:'adminDash',component:AdminDashboardComponent},
+  {path:'adminDash/viewStatistics',component:AdminStatisticsComponent}
+  
 ];
 @NgModule({
   declarations: [],

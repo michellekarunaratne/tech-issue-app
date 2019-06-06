@@ -2,6 +2,7 @@ const User=require('../../models/user');
 const ActiveStaff=require('../../models/activeStaff')
 const CustomerCrud=require('../customer/crud')
 const StaffCrud=require('../staff/crud')
+const AdminCrud=require('../admin/crud')
 
 
 function userLogin(userId,password)
@@ -14,9 +15,14 @@ function userLogin(userId,password)
             }
             else if(doc)
             {
-                if(!doc[0].userId.includes("emp"))
+               
+                if(!doc[0].userId.includes("emp") && !doc[0].userId.includes("admin") )
                 {
                     resolve(CustomerCrud.getCustomerDetails(userId))
+                }
+                else if(doc[0].userId.includes("admin"))
+                {
+                    resolve(AdminCrud.getAdminDetails(userId))
                 }
                 else
                 {

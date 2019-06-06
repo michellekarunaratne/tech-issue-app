@@ -208,3 +208,25 @@ app.get('/staff/logoutActiveStaff',jsonencodedParser,(req,res)=>{
     res.send(error)
   })
 })
+
+app.get('/admin/getAllocatedComplaintsByYear',jsonencodedParser,(req,res)=>{
+  Complaint.getAllocatedByYear(req.query.currentYear)
+  .then(function(doc){
+    res.send(doc)
+  })
+  .catch(function(error){
+    res.send(error)
+  })
+})
+
+app.get('/admin/getUnallocatedComplaintsByYear',jsonencodedParser,(req,res)=>{
+  Complaint.getUnallocatedByYear(req.query.currentYear)
+  .then(function(doc){
+    res.send(doc)
+  })
+  .catch(function(error){
+    res.send(error)
+  })
+})
+
+

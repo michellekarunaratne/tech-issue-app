@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         this.loginService.login(this.loginForm.value)
         .subscribe(user =>{
 
-          if(user.empId==null && user.nic.includes("v"))
+          if(user.empId==null && user.nic.includes("v") && user.adminId==null)
           {
             localStorage.setItem('customer.firstName',user.firstName);
             localStorage.setItem('customer.lastName',user.lastName);
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('userId',user.nic);
             this.router.navigate(['/customerDash']);
           }
-          else if(user.empId.includes("emp"))
+          else if(user.adminId==null && user.empId.includes("emp"))
           {
 
             localStorage.setItem('staff.firstName',user.firstName);
@@ -55,6 +55,16 @@ export class LoginComponent implements OnInit {
             this.webSocketService.logActiveStaffUser(user.empId);
             this.router.navigate(['/staffDash'])
 
+          }
+          else if(user.adminId.includes("admin"))
+          {
+            localStorage.setItem('admin.firstName',user.firstName);
+            localStorage.setItem('admin.lastName',user.lastName);
+            localStorage.setItem('admin.email',user.email);
+            localStorage.setItem('admin.phone',user.phone.toString());
+            this.storeStatusService.setLoginStatus();
+            localStorage.setItem('adminId',user.adminId);
+            this.router.navigate(['/adminDash']);
           }
           else
           {

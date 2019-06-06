@@ -1,0 +1,70 @@
+<br><br><br>
+<div class="col-sm-4 offset-sm-4 text-center">
+    <mdb-card class="text-white" bgColor="bg-primary">
+      <mdb-card-body>
+        <h4>Annual Statistics</h4>
+      </mdb-card-body>
+    </mdb-card>
+</div>
+<br>
+
+<div class="col-sm-4 offset-sm-4 text-center" hidden>
+    <div class="row">
+        <div class="col-sm-4 offset-sm-2 text-center" style="padding-top:10px" >
+                <select class="browser-default custom-select"  [formControl]="currentYear">
+                        <option *ngFor="let y of years" [value]="y">{{y}}</option>
+                </select>
+        </div>
+        <div class="col-sm-4">
+                <button type="button" mdbBtn color="primary" mdbWavesEffect (click)="onSubmit()">Select Year</button>
+        </div>
+    </div>
+</div>
+
+<br><br><br>
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm-6" height="300">
+          <mdb-card>
+              <mdb-card-header class="text-center font-weight-bold">Allocated & Unallocated Complaints</mdb-card-header>
+              <mdb-card-body>
+                  <div style="display: block">
+                      <canvas mdbChart *ngIf="newData"
+                          [chartType]="chartTypeComplaint"
+                          [datasets]="chartDatasetsComplaint"
+                          [labels]="chartLabelsComplaint"
+                          [colors]="chartColorsComplaint"
+                          [options]="chartOptionsComplaint"
+                          [legend]="true"
+                          (chartHover)="chartHovered($event)"
+                          (chartClick)="charttClicked($event)">
+                      </canvas>
+                    </div>
+              </mdb-card-body>
+          </mdb-card>
+    </div>
+      <div class="col-sm-6" height="300">
+          <mdb-card>
+              <mdb-card-header class="text-center font-weight-bold">Create Report Statistics</mdb-card-header>
+              <mdb-card-body>
+                  <div style="display: block">
+                      <canvas mdbChart *ngIf="newData"
+                          [chartType]="chartTypeReport"
+                          [datasets]="chartDatasetsReport"
+                          [labels]="chartLabelsReport"
+                          [colors]="chartColorsReport"
+                          [options]="chartOptionsReport"
+                          [legend]="true"
+                          (chartHover)="chartHovered($event)"
+                          (chartClick)="chartClicked($event)">
+                      </canvas>
+                    </div>
+              </mdb-card-body>
+          </mdb-card>
+    </div>
+</div>
+
+
+
+ 

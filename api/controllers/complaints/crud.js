@@ -171,8 +171,50 @@ function manuallyAllocateStaffToComplaint(empId,complaintId)
 
 }
 
+function getAllocatedComplaintsByYear(currentYear){
+   
+        var promise=new Promise(function(resolve,reject){
+            Complaint.find({allocatedStaff:true,"dateSep.year":currentYear},function(doc,error){
+                if(doc)
+                {
+                    resolve(doc)
+                }
+                else
+                {
+                    reject(error)
+                }
+            })
+        })
+
+        return promise
+
+}
+
+function getUnallocatedComplaintsByYear(currentYear){
+   
+    var promise=new Promise(function(resolve,reject){
+        Complaint.find({allocatedStaff:false,"dateSep.year":currentYear},function(doc,error){
+            if(doc)
+            {
+                resolve(doc)
+            }
+            else
+            {
+                reject(error)
+            }
+        })
+    })
+
+    return promise
+
+}
+
+
+
 module.exports.manuallyAllocateStaffToComplaint=manuallyAllocateStaffToComplaint;
 module.exports.getUnallocatedComplaints=getUnallocatedComplaints;
 module.exports.addReport=addReport;
 module.exports.getComplaintsOfStaff=getComplaintsOfStaff;
 module.exports.getComplaintsOfCustomer=getComplaintsOfCustomer;
+module.exports.getAllocatedByYear=getAllocatedComplaintsByYear;
+module.exports.getUnallocatedByYear=getUnallocatedComplaintsByYear;

@@ -19,5 +19,9 @@ export default class Complaint{
     customerId:String;
     allocatedStaff:Boolean;
     date:Date;
-    report:Report
+    report:Report;
+    dateSep :{
+      year:string;
+      month: string;
+  }
 }

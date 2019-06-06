@@ -30,6 +30,8 @@ import { StaffManuallyAllocateComplaintsComponent } from './staff-manually-alloc
 
 //new
 import { CommonModule } from '@angular/common';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminStatisticsComponent } from './admin-statistics/admin-statistics.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { CommonModule } from '@angular/common';
     StaffEditDetailsComponent,
     StaffCreateJobTicketComponent,
     StaffManuallyAllocateComplaintsComponent,
+    AdminDashboardComponent,
+    AdminStatisticsComponent,
     
 
 

@@ -32,6 +32,10 @@ var complaintSchema= new Schema (
        customer:Customer,
        staff:Staff,
        date:String,
+       dateSep:{
+         year:String,
+         month:String
+       },
        report:Report
        //equipment:[Equipment],
 
