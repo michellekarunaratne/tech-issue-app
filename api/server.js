@@ -54,6 +54,7 @@ io.on('connection',function(socket){
     .then(function(doc){
       if(doc.socketId)
       {
+        console.log(doc.socketId)
         io.sockets.connected[doc.socketId].emit('staffMemberNotification',{msg:"you have a complaint to attend to"})
         ActiveStaff.allocateStaffToComplaint(customerId,doc.userId)
         .then(function(doc){
@@ -61,7 +62,7 @@ io.on('connection',function(socket){
 
         })
         .catch(function(error){
-
+          console.log(error)
         })
       }
     })

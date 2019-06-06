@@ -55,7 +55,7 @@ export class LogComplaintsComponent implements OnInit {
 
   notifyStaff(){
     this.webSocketService.notifyStaff();
-
+    
   }
 
   submitted=false
