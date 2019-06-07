@@ -38,33 +38,40 @@ export class AdminStatisticsComponent implements OnInit {
 
   public countAllocatedComplaints(allocatedComplaintsArray:Array<Complaint>,allocatedComplaintCount:Array<number>)
   {
-     if(allocatedComplaintsArray)
-     {
+    allocatedComplaintCount=[0,0,0,0,0,0,0,0,0,0,0,0]
+    if(allocatedComplaintsArray.length>0)
+    {
       for(let i=0;i<allocatedComplaintsArray.length;i++)
         {
           allocatedComplaintCount[parseInt(allocatedComplaintsArray[i].dateSep.month)-1]+=1;
         }
-      }
-      else
-      {
-        allocatedComplaintCount=[0,0,0,0,0,0,0,0,0,0,0,0];
-      }
+        this.chartDatasetsComplaint[0]={data:allocatedComplaintCount,label:'Allocated Complaints'}
+        this.chartDatasetsReport[1]={data:allocatedComplaintCount,label:'Allocated Complaints'}
+    }
+    else
+    {
+     
+      this.chartDatasetsComplaint[0]={data:[0,0,0,0,0,0,0,0,0,0,0,0],label:'Allocated Complaints'}
+      this.chartDatasetsReport[1]={data:[0,0,0,0,0,0,0,0,0,0,0,0],label:'Allocated Complaints'}
+    }
      
   }
 
   public countUnallocatedComplaints(unallocatedComplaintsArray:Array<Complaint>,unallocatedComplaintCount:Array<number>)
   {
-    if(unallocatedComplaintsArray)
+    unallocatedComplaintCount=[0,0,0,0,0,0,0,0,0,0,0,0]
+    if(unallocatedComplaintsArray.length>0)
     {
       for(let i=0;i<unallocatedComplaintsArray.length;i++)
       {
         unallocatedComplaintCount[parseInt(unallocatedComplaintsArray[i].dateSep.month)-1]+=1;
 
       }
+      this.chartDatasetsComplaint[1]={data:unallocatedComplaintCount,label:'Unallocated Complaints'}
     }
     else
     {
-      unallocatedComplaintCount=[0,0,0,0,0,0,0,0,0,0,0,0];
+      this.chartDatasetsComplaint[1]={data:[0,0,0,0,0,0,0,0,0,0,0,0],label:'Unallocated Complaints'}
     }
      
 
@@ -72,7 +79,8 @@ export class AdminStatisticsComponent implements OnInit {
 
   public countCreatedReport(allocatedComplaintsArray:Array<Complaint>,reportCount:Array<number>)
   {
-    if(allocatedComplaintsArray)
+    reportCount=[0,0,0,0,0,0,0,0,0,0,0,0]
+    if(allocatedComplaintsArray.length>0)
     {
       for(let i=0;i<allocatedComplaintsArray.length;i++)
         {
@@ -80,14 +88,17 @@ export class AdminStatisticsComponent implements OnInit {
           {
             reportCount[parseInt(allocatedComplaintsArray[i].dateSep.month)-1]+=1;
           }
-          
+          this.chartDatasetsReport[0]={data:reportCount,label:'Created Reports'}
         }
     }
     else
     {
-      reportCount=[0,0,0,0,0,0,0,0,0,0,0,0];
+      this.chartDatasetsReport[0]={data:[0,0,0,0,0,0,0,0,0,0,0,0],label:'Created Reports'}
     }
+
+    
     this.newData=true
+
   }
      
   
@@ -111,16 +122,19 @@ export class AdminStatisticsComponent implements OnInit {
     }) 
   }
 
-  /*onSubmit()
+  onSubmit()
   {
 
    this.newData=false;
-  
+
+   //this.chartDatasetsComplaint=[{data:[1,1,1,1,1,1,0,0,0,0,0,0],label:'Allocated complaint'}]
+
     this.adminService.getUnallocatedComplaintsByYear(this.currentYear.value)
     .subscribe(unallocatedComplaints=>{
       this.unallocatedComplaintsArray=unallocatedComplaints;
       this.countUnallocatedComplaints(this.unallocatedComplaintsArray,this.unallocatedComplaintsCount)
     })
+
     this.adminService.getAllocatedComplaintsByYear(this.currentYear.value)
     .subscribe(allocatedComplaints=>{
       this.allocatedComplaintsArray=allocatedComplaints;
@@ -128,7 +142,7 @@ export class AdminStatisticsComponent implements OnInit {
       this.countCreatedReport(this.allocatedComplaintsArray,this.createdReportCount)
     })
   
-  }*/
+  }
 
   public chartTypeComplaint: string = 'bar';
   
