@@ -16,7 +16,7 @@ export class RegistrationComponent implements OnInit {
     email:['',[Validators.required,Validators.email]],
     nic:['',Validators.required],
     phone:['',[Validators.required,Validators.pattern('[0-9]+')]],
-    password:['',[Validators.required]],
+    password:['',[Validators.required,Validators.minLength(9)]],
     confirmPassword:['',[Validators.required]]
   }, {
     validator: this.MustMatch('password', 'confirmPassword')
