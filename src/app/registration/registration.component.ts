@@ -13,8 +13,8 @@ export class RegistrationComponent implements OnInit {
   registrationForm=this.fb.group({
     firstName:['',Validators.required],
     lastName:['',Validators.required],
-    nic:['',Validators.required],
     email:['',[Validators.required,Validators.email]],
+    nic:['',Validators.required],
     phone:['',[Validators.required,Validators.pattern('[0-9]+')]],
     password:['',[Validators.required]],
     confirmPassword:['',[Validators.required]]

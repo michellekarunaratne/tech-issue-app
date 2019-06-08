@@ -38,9 +38,9 @@
         <div class="md-form mt-0">
           <input type="email" formControlName="email" class="form-control" mdbInput [ngClass]="{ 'mdb-error': submitted && form.email.errors}">
           <label for="materialRegisterFormEmail"><mdb-icon fas icon="at"></mdb-icon> E-mail</label>
-          <div *ngIf="submitted && form.phone.errors">
-              <mdb-error *ngIf="submitted && form.phone.errors.required">Email should not be empty</mdb-error>
-              <mdb-error *ngIf="submitted && form.phone.errors.pattern">Invalid email address</mdb-error>
+          <div *ngIf="submitted && form.email.errors">
+              <mdb-error *ngIf="submitted && form.email.errors.required">Email should not be empty</mdb-error>
+              <mdb-error *ngIf="submitted && form.email.errors.email">Invalid email address</mdb-error>
           </div>
         </div>
 
@@ -48,7 +48,7 @@
         <div class="md-form mt-0">
           <input type="text" formControlName="nic" class="form-control" mdbInput>
           <label for="materialRegisterFormEmail"><mdb-icon fas icon="address-card"></mdb-icon> NIC</label>
-          <mdb-error *ngIf="submitted && form.nic.errors.required">Nic should not be empty</mdb-error>
+          <mdb-error *ngIf="submitted && form.nic.errors">NIC should not be empty</mdb-error>
         </div>
 
         <!-- Phone number -->
