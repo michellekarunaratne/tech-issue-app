@@ -70,6 +70,10 @@ io.on('connection',function(socket){
       //io.sockets.connected.emit('NoStaffMemberNotification',{msg:"No Avaialable staff member to allocate complaints"})
     })
 
+    socket.on('reconnect',function (socketId) {
+      console.log('a staff member reconnected');
+    });
+
 
 
   })
