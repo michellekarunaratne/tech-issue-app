@@ -33,7 +33,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "hammerjs": "^2.0.8",
-    "mongoose": "^5.4.16",
+    "mongoose": "^5.7.5",
     "npm-registry-client": "^8.6.0",
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.4.0",
